@@ -167,3 +167,43 @@ if (planTrack && planPrev && planNext) {
   window.addEventListener("resize", updatePlanNav);
   updatePlanNav();
 }
+
+/* ── Ouverture directe d'une FAQ via ancre (#delete-account, #account-deletion,
+   #supprimer-compte) : Google Play / App Store arrivent pile sur la section,
+   deja ouverte et mise en evidence. Fonctionne au chargement ET apres refresh. */
+(function () {
+  var DELETE_ALIASES = ["delete-account", "account-deletion", "supprimer-compte"];
+  function resolveDetails(hash) {
+    if (!hash) return null;
+    if (DELETE_ALIASES.indexOf(hash) !== -1) {
+      return document.getElementById("supprimer-compte");
+    }
+    var el = document.getElementById(hash);
+    if (!el) return null;
+    return el.tagName === "DETAILS"
+      ? el
+      : el.closest
+      ? el.closest("details.faq-item")
+      : null;
+  }
+  function openFromHash() {
+    var hash = (window.location.hash || "").replace(/^#/, "");
+    var details = resolveDetails(hash);
+    if (!details) return;
+    details.hidden = false; // annule un eventuel filtre categorie/recherche
+    details.open = true; // deplie la reponse
+    details.classList.add("faq-highlight");
+    window.setTimeout(function () {
+      details.classList.remove("faq-highlight");
+    }, 2600);
+    window.setTimeout(function () {
+      details.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 90);
+  }
+  window.addEventListener("hashchange", openFromHash);
+  if (document.readyState === "loading") {
+    window.addEventListener("DOMContentLoaded", openFromHash);
+  } else {
+    openFromHash();
+  }
+})();

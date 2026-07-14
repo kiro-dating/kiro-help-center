@@ -907,6 +907,46 @@ a:hover {
   display: none;
 }
 
+/* Ancre invisible pour liens directs (#delete-account…) : point de defilement
+   place juste au-dessus de la question, sous l'en-tete collant. */
+.faq-anchor {
+  display: block;
+  height: 0;
+  scroll-margin-top: 96px;
+}
+
+/* La question ciblee par une ancre atterrit sous l'en-tete collant. */
+.faq-item {
+  scroll-margin-top: 96px;
+}
+
+/* Mise en evidence temporaire (~2,5 s) de la section ouverte via une ancre. */
+.faq-item.faq-highlight {
+  animation: faq-highlight 2.6s ease-out 1;
+}
+
+@keyframes faq-highlight {
+  0% {
+    background: color-mix(in srgb, var(--coral) 16%, var(--paper));
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--coral) 40%, transparent);
+  }
+  70% {
+    background: color-mix(in srgb, var(--coral) 8%, var(--paper));
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--coral) 18%, transparent);
+  }
+  100% {
+    background: var(--paper);
+    box-shadow: 0 8px 18px rgba(102, 65, 56, 0.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-item.faq-highlight {
+    animation: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--coral) 35%, transparent);
+  }
+}
+
 .faq-item summary {
   min-height: 3.4rem;
   display: flex;
