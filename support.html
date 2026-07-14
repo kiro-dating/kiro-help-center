@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f2ee" />
+    <meta
+      name="description"
+      content="Support Kiro: réponses fréquentes, sécurité, compte, profil, signalement et contact."
+    />
+    <title>Support - Kiro</title>
+    <link rel="icon" href="assets/img/kiro-symbol.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="assets/js/main.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+    <header class="site-header">
+      <div class="nav-wrap">
+        <a class="brand" href="index.html" aria-label="Accueil Kiro">
+          <span class="brand-mark" aria-hidden="true">
+            <img src="assets/img/kiro-symbol.svg" alt="" />
+          </span>
+        </a>
+        <button
+          class="menu-button"
+          type="button"
+          data-menu-button
+          aria-expanded="false"
+          aria-label="Ouvrir le menu"
+        >
+          <span></span>
+        </button>
+        <nav class="nav-links" data-nav-links aria-label="Navigation principale">
+          <a href="support.html#securite" data-nav-link>Sécurité</a>
+          <a href="politique-confidentialite.html" data-nav-link>Données</a>
+          <a href="conditions-utilisation.html" data-nav-link>Conditions</a>
+          <a class="nav-cta" href="support.html" data-nav-link>Support</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenu">
+      <section class="page-hero">
+        <div class="section-inner">
+          <p class="eyebrow">Support</p>
+          <h1>
+            <span>Centre d’aide</span>
+            <span class="kiro-wordmark kiro-wordmark--heading" role="img" aria-label="Kiro"></span>
+          </h1>
+          <p>
+            Trouve une réponse rapide sur ton compte, ta position, la sécurité,
+            la modération des photos, les paiements ou la suppression de compte.
+          </p>
+          <div class="page-actions">
+            <a class="button primary" href="#faq">Parcourir la FAQ</a>
+            <a class="button secondary" href="#contact">Contact</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="band surface compact" id="abonnements">
+        <div class="section-inner">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Abonnements</p>
+              <h2>Gratuit + trois niveaux premium.</h2>
+            </div>
+            <p>
+              Un plan gratuit complet, trois plans payants et un essai gratuit
+              possible. Les prix et offres affichés dans l’application font foi.
+            </p>
+          </div>
+
+          <div class="plan-grid" aria-label="Plans Kiro">
+            <article class="plan-card">
+              <span>Gratuit</span>
+              <h3>Gratuit</h3>
+              <p>
+                L’essentiel de <span class="kiro-text">Kiro</span>: découverte,
+                matchs, chat et jeux brise-glace, avec des quotas quotidiens.
+              </p>
+            </article>
+
+            <article class="plan-card is-featured">
+              <span>Populaire</span>
+              <h3>Standard</h3>
+              <p>
+                Plus de rencontres et de visibilité: davantage de Flames, de
+                messages et de traductions chaque jour, Super Flames et défis
+                premium.
+              </p>
+            </article>
+
+            <article class="plan-card">
+              <span>Premium</span>
+              <h3>Premium</h3>
+              <p>
+                L’expérience complète <span class="kiro-text">Kiro</span>: voir
+                qui t’a aimé, filtres avancés, mode incognito et speed dating.
+              </p>
+            </article>
+
+            <article class="plan-card">
+              <span>Max</span>
+              <h3>Max</h3>
+              <p>
+                Sans aucune limite: quotas maximaux, boost de visibilité inclus,
+                support prioritaire et badges exclusifs.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="section-inner support-grid">
+          <div class="faq-panel" id="faq">
+            <p class="eyebrow">Questions fréquentes</p>
+            <h2>FAQ</h2>
+
+            <div class="support-tools" aria-label="Outils de recherche FAQ">
+              <div class="search-field">
+                <label for="faq-search">Rechercher</label>
+                <input
+                  id="faq-search"
+                  type="search"
+                  data-faq-search
+                  placeholder="Compte, signalement, abonnement..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="filter-list" aria-label="Filtrer par catégorie">
+                <button
+                  class="filter-button is-active"
+                  type="button"
+                  data-filter="all"
+                  aria-pressed="true"
+                >
+                  Tout
+                </button>
+                <button
+                  class="filter-button"
+                  type="button"
+                  data-filter="compte"
+                  aria-pressed="false"
+                >
+                  Compte
+                </button>
+                <button
+                  class="filter-button"
+                  type="button"
+                  data-filter="donnees"
+                  aria-pressed="false"
+                >
+                  Données
+                </button>
+                <button
+                  class="filter-button"
+                  type="button"
+                  data-filter="securite"
+                  aria-pressed="false"
+                >
+                  Sécurité
+                </button>
+                <button
+                  class="filter-button"
+                  type="button"
+                  data-filter="abonnement"
+                  aria-pressed="false"
+                >
+                  Abonnements
+                </button>
+              </div>
+            </div>
+
+            <p class="result-count" data-result-count aria-live="polite"></p>
+
+            <div class="faq-list">
+              <details class="faq-item" data-faq-item data-category="compte">
+                <summary>Pourquoi <span class="kiro-text">Kiro</span> ne me demande pas de mot de passe ?</summary>
+                <p>
+                  <span class="kiro-text">Kiro</span> ne stocke aucun mot de passe.
+                  La connexion se fait par code SMS à usage unique, Google ou
+                  Apple. Il n’y a donc pas de mot de passe
+                  <span class="kiro-text">Kiro</span> à voler, deviner ou
+                  réutiliser.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="compte">
+                <summary>Qui peut créer un compte ?</summary>
+                <p>
+                  Tu dois avoir au moins 18 ans. L’inscription par téléphone est
+                  disponible dans un nombre limité de pays, dont le Canada, les
+                  États-Unis, le Mexique, Haïti, la Guadeloupe, la Martinique,
+                  la République dominicaine, le Brésil, le Chili, la France et
+                  la Belgique.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="donnees">
+                <summary>Qui peut voir ma position ?</summary>
+                <p>
+                  Les autres utilisateurs ne voient jamais tes coordonnées
+                  exactes. Ils voient seulement ta ville, ton pays et une
+                  distance approximative. Ta position sert à proposer des profils,
+                  lieux publics et événements à proximité.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="donnees">
+                <summary>Pourquoi mon adresse ou mon domicile n’apparaît jamais ?</summary>
+                <p>
+                  Les adresses résidentielles, lieux sensibles et lieux liés aux
+                  mineurs sont rejetés des lieux favoris. Seuls des lieux publics
+                  validés peuvent apparaître sur un profil, et seul le nom du
+                  lieu est montré.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="securite">
+                <summary>Comment fonctionne la modération des photos ?</summary>
+                <p>
+                  Toutes les photos de profil sont analysées avant publication.
+                  Une photo peut être refusée si elle ne montre pas un visage
+                  reconnaissable, montre plusieurs visages, de la nudité, du
+                  contenu sexuel, de la violence ou des armes.
+                </p>
+              </details>
+
+              <details
+                class="faq-item"
+                id="securite"
+                data-faq-item
+                data-category="securite"
+              >
+                <summary>Que se passe-t-il quand je bloque quelqu’un ?</summary>
+                <p>
+                  Le blocage est immédiat, met fin au match et empêche la
+                  personne de te recontacter via l’application. Il peut persister
+                  même si l’autre personne tente de recréer un compte.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="securite">
+                <summary>Comment signaler un profil ou une conversation ?</summary>
+                <p>
+                  Utilise l’option de signalement depuis le profil ou la
+                  conversation, choisis un motif et ajoute les détails utiles. Les
+                  signalements sont examinés par la modération.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="abonnement">
+                <summary>Comment fonctionnent les quotas gratuits ?</summary>
+                <p>
+                  Le plan gratuit inclut des quotas quotidiens, par exemple
+                  pour les Flames, les messages ou les traductions, qui se
+                  réinitialisent chaque jour. Les plans Standard, Premium et Max
+                  augmentent ou suppriment ces quotas. Des limites de fréquence
+                  indépendantes du plan s’appliquent aussi pour protéger la
+                  plateforme.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="abonnement">
+                <summary>Comment annuler mon abonnement ?</summary>
+                <p>
+                  Les achats passent par l’App Store ou Google Play. Tu dois
+                  annuler l’abonnement dans les réglages du store concerné, au
+                  moins 24 heures avant l’échéance. Supprimer ton compte
+                  <span class="kiro-text">Kiro</span> n’annule pas automatiquement
+                  l’abonnement auprès du store.
+                </p>
+              </details>
+
+              <details
+                class="faq-item"
+                id="supprimer-compte"
+                data-faq-item
+                data-category="compte"
+              >
+                <summary>Comment supprimer mon compte ?</summary>
+                <p>
+                  Ouvre l’application, va dans les réglages, puis dans la section
+                  compte, et choisis la suppression du compte. La suppression
+                  efface les données applicatives liées au compte: profil,
+                  photos, matchs, messages, cercles, événements et jetons de
+                  notification. En cas de blocage ou bannissement, une empreinte
+                  technique irréversible peut être conservée uniquement pour
+                  empêcher le contournement des blocages. Pense aussi à annuler
+                  ton abonnement dans l’App Store ou Google Play: la suppression
+                  du compte ne l’annule pas automatiquement.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="compte">
+                <summary>Qu’est-ce qu’un Cercle ?</summary>
+                <p>
+                  Un Cercle est une communauté <span class="kiro-text">Kiro</span>
+                  créée autour d’un créateur, d’une marque ou d’un événement. Tu
+                  peux rejoindre un Cercle par code, QR code ou lien
+                  d’invitation, y découvrir d’autres membres et participer à des
+                  activités comme le speed dating. Le nombre de Cercles
+                  simultanés dépend de ton plan.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="compte">
+                <summary>Qu’est-ce que le speed dating dans <span class="kiro-text">Kiro</span> ?</summary>
+                <p>
+                  Le speed dating propose des conversations éphémères au sein
+                  d’un Cercle. Les messages sont temporaires et visibles
+                  uniquement des participants pendant la session. Cette
+                  fonctionnalité est réservée à certains plans payants.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="securite">
+                <summary>Comment obtenir le badge vérifié ?</summary>
+                <p>
+                  Lance la vérification par selfie depuis ton profil. Le badge
+                  vérifié confirme que tes photos correspondent bien à toi et te
+                  permet d’apparaître dans le filtre des profils vérifiés. Cette
+                  vérification ne constitue pas une vérification d’identité
+                  civile.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="securite">
+                <summary>Quels conseils pour se rencontrer en toute sécurité ?</summary>
+                <p>
+                  Reste dans le chat <span class="kiro-text">Kiro</span> au
+                  début, ne partage jamais d’informations financières, n’envoie
+                  pas d’argent, choisis un lieu public pour une première
+                  rencontre et informe un proche. En cas de danger immédiat,
+                  contacte les services d’urgence locaux.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="donnees">
+                <summary>Comment fonctionne la traduction des messages ?</summary>
+                <p>
+                  Tu peux traduire un message du chat à la demande, avec support
+                  du créole haïtien. Le texte est envoyé à un service de
+                  traduction uniquement quand tu le demandes. Les traductions
+                  automatiques peuvent contenir des erreurs. Le nombre de
+                  traductions par jour dépend de ton plan.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="compte">
+                <summary>Dans quelles langues <span class="kiro-text">Kiro</span> est-il disponible ?</summary>
+                <p>
+                  <span class="kiro-text">Kiro</span> est disponible en français,
+                  en anglais, en espagnol et en créole haïtien. Le français est
+                  la version de référence.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="compte">
+                <summary>Mon compte a été suspendu ou banni, que faire ?</summary>
+                <p>
+                  Si tu penses qu’il s’agit d’une erreur, écris à
+                  <a href="mailto:support@kirosocial.com">support@kirosocial.com</a>
+                  depuis l’adresse ou le numéro associé à ton compte, en
+                  expliquant la situation. Les décisions de modération sont
+                  réexaminées au cas par cas.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="abonnement">
+                <summary>Comment fonctionne l’essai gratuit ?</summary>
+                <p>
+                  Un essai gratuit peut être proposé sur certains plans. La
+                  durée et les conditions affichées dans l’application font foi.
+                  L’essai se transforme en abonnement payant s’il n’est pas
+                  annulé avant la fin de la période d’essai, via les réglages de
+                  l’App Store ou de Google Play.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="abonnement">
+                <summary>Comment restaurer mes achats ?</summary>
+                <p>
+                  Si ton abonnement n’apparaît plus après un changement
+                  d’appareil ou une réinstallation, utilise l’option de
+                  restauration des achats dans l’application, en étant connecté
+                  au même compte App Store ou Google Play.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="abonnement">
+                <summary>Comment obtenir un remboursement ?</summary>
+                <p>
+                  Les paiements sont traités par l’App Store et Google Play. Les
+                  demandes de remboursement suivent les politiques d’Apple et de
+                  Google et se font directement auprès du store concerné. Pour un
+                  cas particulier, écris à
+                  <a href="mailto:support@kirosocial.com">support@kirosocial.com</a>.
+                </p>
+              </details>
+
+              <details class="faq-item" data-faq-item data-category="donnees">
+                <summary>Est-ce que <span class="kiro-text">Kiro</span> vend mes données ?</summary>
+                <p>
+                  Non. <span class="kiro-text">Kiro</span> ne vend pas tes données
+                  personnelles. Certaines données peuvent être traitées par des
+                  sous-traitants nécessaires au service, comme l’hébergement,
+                  l’authentification, les SMS, les paiements, la modération des
+                  photos, la traduction ou les rapports d’erreurs.
+                </p>
+              </details>
+            </div>
+          </div>
+
+          <aside class="contact-panel" id="contact" aria-label="Contact support">
+            <p class="eyebrow">Contact</p>
+            <h2>Besoin d’aide ?</h2>
+            <p>
+              Écris-nous, l’équipe <span class="kiro-text">Kiro</span> te
+              répondra dès que possible.
+            </p>
+
+            <div class="contact-meta">
+              <div class="meta-row">
+                <span>Support</span>
+                <strong><a href="mailto:support@kirosocial.com">support@kirosocial.com</a></strong>
+              </div>
+              <div class="meta-row">
+                <span>Contact général</span>
+                <strong><a href="mailto:contact@kirosocial.com">contact@kirosocial.com</a></strong>
+              </div>
+              <div class="meta-row">
+                <span>Demandes couvertes</span>
+                <strong>Compte, sécurité, signalement, données et abonnements</strong>
+              </div>
+            </div>
+
+            <p class="form-note">Réponse par e-mail dans les meilleurs délais.</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="section-inner">
+        <a class="brand" href="index.html" aria-label="Accueil Kiro">
+          <span class="brand-mark" aria-hidden="true">
+            <img src="assets/img/kiro-symbol.svg" alt="" />
+          </span>
+        </a>
+        <span>© 2026 Kiro Dating. Tous droits réservés. <!-- À CONFIRMER (avocat) : mention de copyright définitive avec l’avocat. --></span>
+        <div class="footer-links">
+          <a href="conditions-utilisation.html">Conditions</a>
+          <a href="politique-confidentialite.html">Confidentialité</a>
+          <a href="support.html#securite">Sécurité</a>
+          <a href="support.html">Support</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
