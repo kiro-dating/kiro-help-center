@@ -1,11 +1,18 @@
 const body = document.body;
 const menuButton = document.querySelector("[data-menu-button]");
 const navLinks = document.querySelector("[data-nav-links]");
-const currentPath = window.location.pathname.split("/").pop() || "index.html";
+// URL propres (cleanUrls Vercel) : « /support » et l'ancien « /support.html »
+// désignent la même page. On compare les chemins normalisés, sans fragment.
+const normalizePath = (path) => {
+  const clean = path.split(/[?#]/)[0].replace(/\.html$/, "").replace(/\/index$/, "/");
+  return clean.length > 1 ? clean.replace(/\/+$/, "") : "/";
+};
+const currentPath = normalizePath(window.location.pathname);
 
 document.querySelectorAll("[data-nav-link]").forEach((link) => {
-  const linkPath = link.getAttribute("href");
-  if (linkPath === currentPath) {
+  const href = link.getAttribute("href") || "";
+  // Les ancres internes (ex. « /support#securite ») ne marquent pas la page.
+  if (!href.includes("#") && normalizePath(href) === currentPath) {
     link.setAttribute("aria-current", "page");
   }
 });
@@ -86,7 +93,7 @@ helpSearchForm?.addEventListener("submit", (event) => {
   event.preventDefault();
   const query = helpSearchInput?.value.trim();
   const suffix = query ? `?q=${encodeURIComponent(query)}#faq` : "#faq";
-  window.location.href = `support.html${suffix}`;
+  window.location.href = `/support${suffix}`;
 });
 
 faqSearch?.addEventListener("input", updateFaq);

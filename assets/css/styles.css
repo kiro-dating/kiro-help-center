@@ -14,6 +14,15 @@
   --gold: #7c6549;
   --shadow: 0 16px 38px rgba(29, 22, 20, 0.1);
   --shadow-soft: 0 8px 18px rgba(29, 22, 20, 0.07);
+
+  /* Identité Kiro — valeurs du design system mobile
+     (src/design-system/foundations/colors.ts : red.500 / red.600 ;
+     gradients.ts : gradient.brand = red.500 → red.600). Ne pas inventer
+     d'autres teintes. Le dégradé reste décoratif (filets, accents) : un texte
+     blanc posé dessus n'atteindrait pas 4,5:1 côté red.500 (3,9:1). */
+  --kiro-red-500: #f72c25;
+  --kiro-red-600: #d92525; /* blanc sur red.600 : 4,95:1 (AA) */
+  --kiro-gradient: linear-gradient(90deg, var(--kiro-red-500), var(--kiro-red-600));
 }
 
 * {
@@ -59,7 +68,7 @@ input {
 
 a {
   color: inherit;
-  text-decoration-color: rgba(169, 58, 52, 0.38);
+  text-decoration-color: rgba(217, 37, 37, 0.38);
   text-decoration-thickness: 2px;
   text-underline-offset: 0.2em;
 }
@@ -200,12 +209,12 @@ a:hover {
 .nav-links .nav-cta {
   margin-left: 0.25rem;
   color: var(--paper);
-  background: var(--ink);
+  background: var(--kiro-red-600);
 }
 
 .nav-links .nav-cta:hover {
   color: var(--paper);
-  background: var(--coral-dark);
+  background: var(--ink);
 }
 
 .hero {
@@ -232,7 +241,12 @@ a:hover {
 }
 
 .hero::after {
-  display: none;
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 1;
+  height: 3px;
+  content: "";
+  background: var(--kiro-gradient);
 }
 
 .hero-content {
@@ -412,11 +426,11 @@ a:hover {
 
 .button.primary {
   color: var(--paper);
-  background: var(--ink);
+  background: var(--kiro-red-600);
 }
 
 .button.primary:hover {
-  background: var(--coral-dark);
+  background: var(--ink);
 }
 
 .button.secondary,
@@ -674,9 +688,9 @@ a:hover {
 .page-hero::after {
   position: absolute;
   inset: auto 0 0;
-  height: 1px;
+  height: 3px;
   content: "";
-  background: var(--line);
+  background: var(--kiro-gradient);
 }
 
 .page-hero p {
@@ -706,6 +720,16 @@ a:hover {
 .toc strong {
   display: block;
   margin-bottom: 0.75rem;
+}
+
+.toc strong::after {
+  display: block;
+  width: 2.25rem;
+  height: 3px;
+  margin-top: 0.45rem;
+  content: "";
+  border-radius: 999px;
+  background: var(--kiro-gradient);
 }
 
 .toc a {
@@ -793,7 +817,8 @@ a:hover {
 
 .callout {
   margin-top: 1.5rem;
-  border-left: 5px solid var(--coral);
+  border-left: 5px solid var(--kiro-red-600);
+  border-image: var(--kiro-gradient) 1;
   background: var(--soft);
 }
 
