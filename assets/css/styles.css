@@ -2116,3 +2116,49 @@ main [id] {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ── Finitions (octobre 2026) ──────────────────────────────────────────────
+   Corrections ciblées, sans changement d'identité visuelle. */
+
+/* FAQ : l'indicateur « + » est positionné en absolu à droite ; certaines
+   règles responsive réinitialisaient le padding droit (16px), si bien que le
+   texte des questions passait sous l'indicateur sur mobile. */
+.faq-item summary {
+  padding-right: 3.4rem;
+}
+
+/* FAQ (support) : les ancres de liens directs (#delete-account,
+   #account-deletion) sont des éléments de hauteur nulle placés dans la liste ;
+   chacune ajoutait un intervalle, d'où un écart triple avant « Comment
+   supprimer mon compte ? ». En flex, une marge négative les neutralise sans
+   toucher au point de défilement. */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-list > .faq-anchor {
+  margin-bottom: -0.75rem;
+}
+
+@media (max-width: 620px) {
+  .faq-list > .faq-anchor {
+    margin-bottom: -0.6rem;
+  }
+}
+
+/* Page 404 : l'en-tête occupe la hauteur utile pour que le pied de page reste
+   en bas de l'écran au lieu de flotter au milieu. */
+main > .page-hero:only-child {
+  display: grid;
+  min-height: calc(100svh - 72px - 6.5rem);
+  align-content: center;
+}
+
+/* FAQ ouverte : le « + » pivotait de 45° pour former un « × », mais toute la
+   pastille pivotait aussi et devenait un losange. Même intention (×), pastille
+   droite. */
+.faq-item[open] summary::after {
+  content: "\00D7";
+  transform: translateY(-50%);
+}
