@@ -634,6 +634,32 @@ summary {
   padding: 0 16px;
 }
 
+/* Bouton de recherche : flèche ronde sur petit écran (le texte reste lu par
+   les lecteurs d'écran), libellé « Rechercher » à partir de 480 px. */
+.search-go svg {
+  display: none;
+}
+
+@media (max-width: 479.98px) {
+  .search .search-go {
+    width: var(--kiro-touch);
+    padding: 0;
+  }
+
+  .search-go svg {
+    display: block;
+  }
+
+  .search-go-txt {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
 .topics {
   padding-top: 20px;
 }
@@ -1134,6 +1160,17 @@ summary {
   padding-right: 18px;
 }
 
+@media (min-width: 1024px) {
+  .search-field {
+    height: 56px;
+    padding: 0 14px 0 16px;
+  }
+
+  .search-field input {
+    font-size: 15px;
+  }
+}
+
 .filters {
   display: flex;
   gap: 8px;
@@ -1317,7 +1354,7 @@ summary {
   }
 
   .faq-grid {
-    grid-template-columns: minmax(0, 0.36fr) minmax(0, 1fr); gap: 40px; align-items: start;
+    grid-template-columns: 300px minmax(0, 1fr); gap: 40px; align-items: start;
   }
 
   .faq-side {
