@@ -260,25 +260,6 @@ a:hover {
   text-align: center;
 }
 
-.hero-icon {
-  display: inline-grid;
-  width: 4rem;
-  height: 4rem;
-  place-items: center;
-  margin-bottom: 1.2rem;
-  padding: 0.35rem;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  box-shadow: none;
-}
-
-.hero-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
 .eyebrow {
   margin: 0 0 0.85rem;
   color: var(--coral-dark);
@@ -335,17 +316,6 @@ a:hover {
   margin-inline: 0.06em;
 }
 
-.kiro-wordmark--plan {
-  width: 2.18em;
-  height: 0.66em;
-}
-
-.kiro-wordmark--footer {
-  width: 2.05em;
-  height: 0.62em;
-  vertical-align: -0.12em;
-}
-
 .kiro-text {
   color: var(--coral-dark);
   font-weight: 900;
@@ -400,9 +370,7 @@ a:hover {
   background: var(--coral-dark);
 }
 
-.hero-actions,
-.page-actions,
-.contact-actions {
+.page-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
@@ -433,15 +401,13 @@ a:hover {
   background: var(--ink);
 }
 
-.button.secondary,
-.button.light {
+.button.secondary {
   color: var(--ink);
   border-color: var(--line);
   background: var(--paper);
 }
 
-.button.secondary:hover,
-.button.light:hover {
+.button.secondary:hover {
   border-color: var(--line-strong);
   background: var(--soft);
 }
@@ -501,7 +467,6 @@ a:hover {
 }
 
 .resource-card,
-.feature-card,
 .contact-panel,
 .faq-panel,
 .legal-note,
@@ -509,8 +474,7 @@ a:hover {
 .callout,
 .content,
 .help-cta,
-.story-card,
-.contact-tile {
+.story-card {
   border: 1px solid var(--line);
   background: var(--paper);
   border-radius: 8px;
@@ -536,8 +500,7 @@ a:hover {
   box-shadow: var(--shadow-soft);
 }
 
-.card-icon,
-.feature-card .icon {
+.card-icon {
   width: 2.4rem;
   height: 2.4rem;
   display: inline-grid;
@@ -559,15 +522,13 @@ a:hover {
   background: #eee6dc;
 }
 
-.resource-card h2,
-.feature-card h3 {
+.resource-card h2 {
   margin: 0 0 0.5rem;
   font-size: 1.18rem;
   line-height: 1.18;
 }
 
-.resource-card p,
-.feature-card p {
+.resource-card p {
   margin: 0;
   color: var(--muted);
   font-size: 0.94rem;
@@ -581,25 +542,6 @@ a:hover {
   font-size: 1.25rem;
   font-weight: 900;
   align-self: end;
-}
-
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.feature-card {
-  min-height: 220px;
-  display: flex;
-  flex-direction: column;
-  padding: 1.35rem;
-}
-
-.feature-card a {
-  margin-top: auto;
-  padding-top: 1.2rem;
-  font-weight: 850;
 }
 
 .plan-grid {
@@ -621,14 +563,7 @@ a:hover {
   border-color: var(--ink);
 }
 
-.plan-carousel {
-  position: relative;
-}
-
 /* Flèches du carrousel : visibles seulement sur mobile */
-.plan-nav {
-  display: none;
-}
 
 .plan-card span,
 .support-email-card span {
@@ -859,11 +794,17 @@ a:hover {
   border-radius: 8px;
 }
 
-:where(a, button, input, summary):focus {
+:where(a,
+button,
+input,
+summary):focus {
   outline: none;
 }
 
-:where(a, button, input, summary):focus-visible {
+:where(a,
+button,
+input,
+summary):focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
@@ -934,6 +875,7 @@ a:hover {
 
 /* Ancre invisible pour liens directs (#delete-account…) : point de defilement
    place juste au-dessus de la question, sous l'en-tete collant. */
+
 .faq-anchor {
   display: block;
   height: 0;
@@ -941,11 +883,13 @@ a:hover {
 }
 
 /* La question ciblee par une ancre atterrit sous l'en-tete collant. */
+
 .faq-item {
   scroll-margin-top: 96px;
 }
 
 /* Mise en evidence temporaire (~2,5 s) de la section ouverte via une ancre. */
+
 .faq-item.faq-highlight {
   animation: faq-highlight 2.6s ease-out 1;
 }
@@ -1043,10 +987,6 @@ a:hover {
   overflow-wrap: anywhere;
 }
 
-.wide-button {
-  width: 100%;
-}
-
 .help-cta {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
@@ -1058,38 +998,10 @@ a:hover {
     url("../img/hero-connection.png") center / cover no-repeat;
 }
 
-.contact-tile-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.8rem;
-}
-
-.contact-tile {
-  display: grid;
-  gap: 0.18rem;
-  min-height: 118px;
-  padding: 1rem;
-  text-decoration: none;
-}
-
-.contact-tile:hover {
-  border-color: var(--line-strong);
-}
-
-.contact-tile span,
 .badge {
   color: var(--coral-dark);
   font-size: 0.76rem;
   font-weight: 900;
-}
-
-.contact-tile strong {
-  line-height: 1.16;
-}
-
-.contact-tile small {
-  color: var(--muted);
-  overflow-wrap: anywhere;
 }
 
 .story-grid {
@@ -1261,14 +1173,6 @@ a:hover {
     border-top: 1px solid var(--line);
     border-left: 0;
   }
-
-  .contact-tile-grid {
-    margin-top: 1.5rem;
-  }
-
-  .feature-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 620px) {
@@ -1309,12 +1213,6 @@ a:hover {
 
   .hero-content {
     padding: 3.4rem 0 3rem;
-  }
-
-  .hero-icon {
-    width: 3.25rem;
-    height: 3.25rem;
-    margin-bottom: 0.9rem;
   }
 
   .page-hero {
@@ -1384,7 +1282,6 @@ a:hover {
 
   .resource-grid,
   .plan-grid,
-  .contact-tile-grid,
   .story-grid {
     grid-template-columns: 1fr;
   }
@@ -1561,12 +1458,12 @@ a:hover {
   }
 }
 
-
 /* ============================================================
    Héros : cercle animé autour du wordmark + filigrane Kiro
    ============================================================ */
 
 /* Trait dessiné à la main autour de « Kiro » */
+
 .wordmark-ring {
   position: relative;
   display: inline-flex;
@@ -1615,6 +1512,7 @@ a:hover {
 }
 
 /* Filigrane : symbole Kiro tourné, très léger, coupé par le bord du héros */
+
 .hero-watermark {
   position: absolute;
   bottom: -150px;
@@ -1652,6 +1550,7 @@ a:hover {
 }
 
 /* Sur téléphone, « Kiro » reprend la même police que « Help Center » */
+
 .kiro-hero-text {
   display: none;
 }
@@ -1665,11 +1564,10 @@ a:hover {
     display: inline;
     padding-inline: 0.06em;
   }
-
 }
 
-
 /* Icônes SVG des cartes ressources */
+
 .card-icon svg {
   width: 20px;
   height: 20px;
@@ -1712,7 +1610,6 @@ main [id] {
 .hero-search button,
 .nav-links a,
 .toc a,
-.contact-tile,
 .plan-card,
 .faq-item,
 .faq-item summary::after {
@@ -1741,16 +1638,10 @@ main [id] {
     border-color: var(--line-strong);
     box-shadow: var(--shadow);
   }
-
-  .contact-tile:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow);
-  }
 }
 
 @media (hover: none) {
   .resource-card:active,
-  .contact-tile:active,
   .faq-item summary:active {
     background: var(--soft);
   }
@@ -1891,6 +1782,7 @@ main [id] {
 }
 
 /* Questions FAQ : texte fluide, indicateur positionné à droite */
+
 .faq-item summary {
   display: block;
   position: relative;
@@ -1912,6 +1804,7 @@ main [id] {
 /* ============================================================
    Mobile ≤ 620px : rendu « application »
    ============================================================ */
+
 @media (max-width: 620px) {
   main [id] {
     scroll-margin-top: 122px;
@@ -2017,39 +1910,6 @@ main [id] {
     box-shadow: var(--shadow-soft);
   }
 
-  .plan-nav {
-    position: absolute;
-    top: 50%;
-    z-index: 2;
-    display: grid;
-    place-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    margin-top: -1.25rem;
-    padding: 0;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: var(--paper);
-    color: var(--ink);
-    font-size: 1.5rem;
-    line-height: 1;
-    cursor: pointer;
-    box-shadow: var(--shadow-soft);
-  }
-
-  .plan-nav.prev {
-    left: -0.45rem;
-  }
-
-  .plan-nav.next {
-    right: -0.45rem;
-  }
-
-  .plan-nav:disabled {
-    opacity: 0.3;
-    cursor: default;
-  }
-
   .faq-item summary {
     min-height: 3.5rem;
     padding: 0.95rem 1rem;
@@ -2123,6 +1983,7 @@ main [id] {
 /* FAQ : l'indicateur « + » est positionné en absolu à droite ; certaines
    règles responsive réinitialisaient le padding droit (16px), si bien que le
    texte des questions passait sous l'indicateur sur mobile. */
+
 .faq-item summary {
   padding-right: 3.4rem;
 }
@@ -2132,6 +1993,7 @@ main [id] {
    chacune ajoutait un intervalle, d'où un écart triple avant « Comment
    supprimer mon compte ? ». En flex, une marge négative les neutralise sans
    toucher au point de défilement. */
+
 .faq-list {
   display: flex;
   flex-direction: column;
@@ -2149,6 +2011,7 @@ main [id] {
 
 /* Page 404 : l'en-tête occupe la hauteur utile pour que le pied de page reste
    en bas de l'écran au lieu de flotter au milieu. */
+
 main > .page-hero:only-child {
   display: grid;
   min-height: calc(100svh - 72px - 6.5rem);
@@ -2158,6 +2021,7 @@ main > .page-hero:only-child {
 /* FAQ ouverte : le « + » pivotait de 45° pour former un « × », mais toute la
    pastille pivotait aussi et devenait un losange. Même intention (×), pastille
    droite. */
+
 .faq-item[open] summary::after {
   content: "\00D7";
   transform: translateY(-50%);
