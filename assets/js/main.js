@@ -1,6 +1,9 @@
+// Centre d'aide Kiro — amélioration progressive. Sans JavaScript, le site
+// reste lisible et navigable (FAQ en <details>, liens du pied de page).
 const body = document.body;
-const menuButton = document.querySelector("[data-menu-button]");
-const navLinks = document.querySelector("[data-nav-links]");
+const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+const desktop = window.matchMedia("(min-width: 1024px)");
+
 // URL propres (cleanUrls Vercel) : « /support » et l'ancien « /support.html »
 // désignent la même page. On compare les chemins normalisés, sans fragment.
 const normalizePath = (path) => {
@@ -9,7 +12,7 @@ const normalizePath = (path) => {
 };
 const currentPath = normalizePath(window.location.pathname);
 
-document.querySelectorAll("[data-nav-link]").forEach((link) => {
+$$("[data-nav-link]").forEach((link) => {
   const href = link.getAttribute("href") || "";
   // Les ancres internes (ex. « /support#securite ») ne marquent pas la page.
   if (!href.includes("#") && normalizePath(href) === currentPath) {
@@ -17,17 +20,44 @@ document.querySelectorAll("[data-nav-link]").forEach((link) => {
   }
 });
 
-if (menuButton && navLinks) {
-  menuButton.addEventListener("click", () => {
-    const isOpen = body.classList.toggle("menu-open");
-    menuButton.setAttribute("aria-expanded", String(isOpen));
-  });
+// Menu mobile plein écran : le focus reste dans le menu, Échap le ferme et
+// rend le focus au bouton. Le reste de la page est inerte pendant l'ouverture.
+const menuButton = document.querySelector("[data-menu-button]");
+const menu = document.querySelector("[data-menu]");
 
-  navLinks.addEventListener("click", (event) => {
-    if (event.target.matches("a")) {
-      body.classList.remove("menu-open");
-      menuButton.setAttribute("aria-expanded", "false");
+if (menuButton && menu) {
+  const outside = $$("main, footer, .skip-link, .logo");
+  const isOpen = () => body.classList.contains("menu-open");
+  const setMenu = (open, returnFocus) => {
+    body.classList.toggle("menu-open", open);
+    menuButton.setAttribute("aria-expanded", String(open));
+    menuButton.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+    outside.forEach((el) => {
+      el.inert = open;
+    });
+    if (open) menu.querySelector("a")?.focus();
+    else if (returnFocus) menuButton.focus();
+  };
+
+  menuButton.addEventListener("click", () => setMenu(!isOpen(), true));
+  menu.addEventListener("click", (event) => {
+    if (isOpen() && event.target.closest("a")) setMenu(false, false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (!isOpen()) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      setMenu(false, true);
+    } else if (event.key === "Tab") {
+      const items = [menuButton, ...$$("a", menu)];
+      const index = items.indexOf(document.activeElement);
+      const next = event.shiftKey ? index - 1 : index + 1;
+      event.preventDefault();
+      items[(next + items.length) % items.length].focus();
     }
+  });
+  desktop.addEventListener("change", () => {
+    if (isOpen()) setMenu(false, false);
   });
 }
 
@@ -98,23 +128,6 @@ helpSearchForm?.addEventListener("submit", (event) => {
 
 faqSearch?.addEventListener("input", updateFaq);
 updateFaq();
-
-// Fermeture du menu mobile : touche Échap ou clic à l'extérieur
-function closeMenu() {
-  if (!body.classList.contains("menu-open")) return;
-  body.classList.remove("menu-open");
-  menuButton?.setAttribute("aria-expanded", "false");
-}
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") closeMenu();
-});
-
-document.addEventListener("click", (event) => {
-  if (body.classList.contains("menu-open") && !event.target.closest(".site-header")) {
-    closeMenu();
-  }
-});
 
 /* ── Ouverture directe d'une FAQ via ancre (#delete-account, #account-deletion,
    #supprimer-compte) : Google Play / App Store arrivent pile sur la section,

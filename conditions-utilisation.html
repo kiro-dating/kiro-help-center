@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f7f2ee" />
+    <meta name="theme-color" content="#ffffff" />
     <meta
       name="description"
       content="Conditions d'utilisation de l'application de rencontre Kiro."
@@ -20,29 +20,37 @@
   <body>
     <a class="skip-link" href="#contenu">Aller au contenu</a>
 
-    <header class="site-header">
-      <div class="nav-wrap">
-        <a class="brand" href="/" aria-label="Accueil Kiro">
-          <span class="brand-mark" aria-hidden="true">
-            <img src="/assets/img/kiro-symbol.svg" alt="" />
-          </span>
+    <header class="hdr">
+      <div class="wrap hdr-in">
+        <a class="logo" href="/" aria-label="Centre d’aide Kiro, accueil">
+          <img class="logo-sym" src="/assets/img/kiro-symbol-red.svg" alt="" width="24" height="30" />
+          <img class="logo-word" src="/assets/img/kiro-wordmark.svg" alt="" width="48" height="20" />
+          <span class="logo-pill" aria-hidden="true">AIDE</span>
         </a>
         <button
-          class="menu-button"
+          class="menu-btn"
           type="button"
           data-menu-button
           aria-expanded="false"
+          aria-controls="menu"
           aria-label="Ouvrir le menu"
         >
-          <span></span>
+          <svg class="i-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16" /></svg>
+          <svg class="i-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
         </button>
-        <nav class="nav-links" data-nav-links aria-label="Navigation principale">
-          <a href="/support#securite" data-nav-link>Sécurité</a>
-          <a href="/securite-enfants" data-nav-link>Sécurité des enfants</a>
-          <a href="/politique-confidentialite" data-nav-link>Données</a>
-          <a href="/conditions-utilisation" data-nav-link>Conditions</a>
-          <a class="nav-cta" href="/support" data-nav-link>Support</a>
-        </nav>
+        <div class="menu" id="menu" data-menu>
+          <nav class="nav" aria-label="Navigation principale">
+            <a href="/support#faq" data-nav-link>FAQ</a>
+            <a href="/support#securite" data-nav-link>Sécurité</a>
+            <a href="/politique-confidentialite" data-nav-link>Confidentialité</a>
+            <a href="/conditions-utilisation" data-nav-link>Conditions</a>
+            <a href="/support#contact" data-nav-link>Contact</a>
+          </nav>
+          <a class="btn btn-ink ext" href="https://kirodating.com">
+            kirodating.com
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9" /></svg>
+          </a>
+        </div>
       </div>
     </header>
 
@@ -57,8 +65,8 @@
             respectueux et sécurisés.
           </p>
           <div class="page-actions">
-            <a class="button primary" href="#acceptation">Commencer la lecture</a>
-            <a class="button secondary" href="#contact">Contact</a>
+            <a class="btn btn-ink" href="#acceptation">Commencer la lecture</a>
+            <a class="btn btn-line" href="#contact">Contact</a>
           </div>
         </div>
       </section>
@@ -588,21 +596,17 @@
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="section-inner">
-        <a class="brand" href="/" aria-label="Accueil Kiro">
-          <span class="brand-mark" aria-hidden="true">
-            <img src="/assets/img/kiro-symbol.svg" alt="" />
-          </span>
-        </a>
+    <footer class="ftr">
+      <div class="wrap ftr-in">
         <span>© 2026 Kiro Dating. Tous droits réservés. <!-- À CONFIRMER (avocat) : mention de copyright définitive avec l’avocat. --></span>
-        <div class="footer-links">
-          <a href="/conditions-utilisation">Conditions</a>
-          <a href="/politique-confidentialite">Confidentialité</a>
-          <a href="/securite-enfants">Sécurité des enfants</a>
-          <a href="/support#securite">Sécurité</a>
-          <a href="/support">Support</a>
-        </div>
+        <nav class="ftr-links" aria-label="Liens utiles">
+          <a href="/conditions-utilisation" data-nav-link>Conditions</a>
+          <a href="/politique-confidentialite" data-nav-link>Confidentialité</a>
+          <a href="/securite-enfants" data-nav-link>Sécurité des enfants</a>
+          <a href="/support#securite" data-nav-link>Sécurité</a>
+          <a href="/support" data-nav-link>Support</a>
+          <a href="https://kirodating.com">kirodating.com</a>
+        </nav>
       </div>
     </footer>
   </body>
