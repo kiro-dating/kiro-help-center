@@ -1,29 +1,118 @@
+/* ==========================================================================
+   Kiro Solid — jetons web (FONDATIONS_KIRO_SOLID v1.1, 2026-10-29).
+   Source : design system de l'app (briser-la-glace/src/design-system/tokens).
+   Les valeurs font foi ; ne pas en inventer d'autres.
+   ========================================================================== */
 :root {
-  --ink: #171515;
-  --muted: #625a57;
-  --paper: #ffffff;
-  --soft: #f7f2ee;
-  --soft-2: #eee5df;
-  --line: #ded3cd;
-  --line-strong: #c8bab2;
-  --coral: #a93a34;
-  --coral-dark: #84251f;
-  --rose: #ead8d3;
-  --teal: #4e625b;
-  --mint: #e7eee8;
-  --gold: #7c6549;
-  --shadow: 0 16px 38px rgba(29, 22, 20, 0.1);
-  --shadow-soft: 0 8px 18px rgba(29, 22, 20, 0.07);
+  /* Marque */
+  --kiro-red: #F72C25;          /* accents, grands titres, aplats (pas de petit texte) */
+  --kiro-red-action: #D92525;   /* boutons et petit texte rouge : blanc dessus 4,9:1 (AA) */
+  --kiro-red-soft: #FFF1F1;
+  --kiro-red-on-dark: #FF4A4A;
+  --kiro-symbol: #F01C43;       /* logo uniquement */
+  /* Neutres */
+  --kiro-ink: #141414;
+  --kiro-ink-2: #3A3A3C;
+  --kiro-text-2: #5F5F5F;
+  --kiro-muted: #79797D;
+  --kiro-page: #FFFFFF;
+  --kiro-canvas: #F8F8F6;
+  --kiro-surface-alt: #F1F1EE;
+  --kiro-hairline: #ECECEC;
+  --kiro-control: #E4E4E7;
+  --kiro-body-text: #252525;    /* corps des textes longs (pages légales) */
+  /* Sombre */
+  --kiro-night: #121212;
+  --kiro-night-2: #141414;
+  --kiro-night-surface: #181818;
+  --kiro-night-border: #252525;
+  --kiro-night-text-2: #A0A0A5;
+  /* Glace */
+  --kiro-ice-soft: #DDF0F7;
+  --kiro-ice: #3FA3C9;
+  --kiro-ice-ink: #2E90B4;
+  /* Plans (pastilles uniquement) */
+  --kiro-plan-free: #F01C43;
+  --kiro-plan-standard: #FFC53D;
+  --kiro-plan-premium: #34D399;
+  --kiro-plan-max: #A78BFA;
+  /* États */
+  --kiro-success: #1A7F37;
+  --kiro-warning: #B8860B;
+  --kiro-danger: #D92D20;
+  /* Typographie */
+  --kiro-font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --kiro-display: 900 clamp(44px, 6vw, 76px)/1.03 var(--kiro-font);
+  --kiro-h2: 800 clamp(32px, 4vw, 52px)/1.08 var(--kiro-font);
+  --kiro-h3: 800 clamp(20px, 2vw, 24px)/1.25 var(--kiro-font);
+  --kiro-lead: 400 clamp(17px, 1.6vw, 20px)/1.5 var(--kiro-font);
+  --kiro-body: 400 16px/1.55 var(--kiro-font);
+  --kiro-article: 400 18px/1.67 var(--kiro-font);
+  --kiro-label: 700 15px/1.2 var(--kiro-font);
+  --kiro-eyebrow: 700 12px/1.2 var(--kiro-font);
+  --kiro-tracking-display: -0.04em;
+  --kiro-tracking-h2: -0.035em;
+  --kiro-tracking-h3: -0.02em;
+  /* Espacements (pas de 4/8) */
+  --kiro-space-1: 4px; --kiro-space-2: 8px; --kiro-space-3: 12px;
+  --kiro-space-4: 16px; --kiro-space-5: 20px; --kiro-space-6: 24px;
+  --kiro-space-8: 32px; --kiro-space-10: 40px; --kiro-space-12: 48px;
+  --kiro-space-14: 56px; --kiro-space-18: 72px;
+  --kiro-section-y: clamp(48px, 9vw, 120px);
+  --kiro-gutter: clamp(16px, 3vw, 32px);
+  --kiro-container: 1240px;
+  --kiro-reading: 680px;
+  /* Rayons */
+  --kiro-radius-chip: 999px;
+  --kiro-radius-badge: 14px;
+  --kiro-radius-icon: 16px;
+  --kiro-radius-card: 24px;
+  --kiro-radius-card-lg: 32px;
+  --kiro-radius-block: 40px;
+  /* Ombres (aucune sur ce site, sauf menu mobile ouvert) */
+  --kiro-shadow-card: 0 4px 8px rgba(20, 20, 20, 0.06);
+  --kiro-shadow-float: 0 16px 36px rgba(20, 20, 20, 0.14);
+  --kiro-shadow-photo: 0 30px 60px rgba(20, 20, 20, 0.18);
+  /* Mouvement */
+  --kiro-duration-fast: 160ms;
+  --kiro-duration: 220ms;
+  --kiro-duration-slow: 300ms;
+  --kiro-ease: cubic-bezier(0.33, 1, 0.68, 1);
+  /* Tailles */
+  --kiro-touch: 44px;
+  --kiro-btn-h: 56px;
+  --kiro-badge-h: 60px;
+  --kiro-header-h: 76px;
 
-  /* Identité Kiro — valeurs du design system mobile
-     (src/design-system/foundations/colors.ts : red.500 / red.600 ;
-     gradients.ts : gradient.brand = red.500 → red.600). Ne pas inventer
-     d'autres teintes. Le dégradé reste décoratif (filets, accents) : un texte
-     blanc posé dessus n'atteindrait pas 4,5:1 côté red.500 (3,9:1). */
-  --kiro-red-500: #f72c25;
-  --kiro-red-600: #d92525; /* blanc sur red.600 : 4,95:1 (AA) */
-  --kiro-gradient: linear-gradient(90deg, var(--kiro-red-500), var(--kiro-red-600));
+  /* Anciennes variables du site, rattachées aux jetons */
+  --ink: var(--kiro-ink);
+  --muted: var(--kiro-text-2);
+  --paper: var(--kiro-page);
+  --soft: var(--kiro-canvas);
+  --soft-2: var(--kiro-surface-alt);
+  --line: var(--kiro-hairline);
+  --line-strong: var(--kiro-control);
+  --coral: var(--kiro-red-action);
+  --coral-dark: var(--kiro-red-action);
+  --rose: var(--kiro-red-soft);
+  --teal: var(--kiro-ice-ink);
+  --mint: var(--kiro-ice-soft);
+  --gold: var(--kiro-warning);
+  --shadow: none;
+  --shadow-soft: none;
+  --kiro-red-500: var(--kiro-red);
+  --kiro-red-600: var(--kiro-red-action);
+  --kiro-gradient: var(--kiro-red-action);
 }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 
 * {
   box-sizing: border-box;
@@ -36,9 +125,7 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  font-family: var(--kiro-font);
   font-size: 16px;
   line-height: 1.6;
   background: var(--paper);
