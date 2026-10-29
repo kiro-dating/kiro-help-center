@@ -1511,7 +1511,6 @@ body.legal {
     border: 1px solid var(--kiro-hairline);
     border-radius: 16px;
     background: var(--kiro-page);
-    box-shadow: var(--kiro-shadow-float);
   }
 
   .js .toc .toc-list a {
