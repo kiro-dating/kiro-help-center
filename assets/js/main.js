@@ -65,8 +65,6 @@ const faqSearch = document.querySelector("[data-faq-search]");
 const faqItems = Array.from(document.querySelectorAll("[data-faq-item]"));
 const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
 const resultCount = document.querySelector("[data-result-count]");
-const helpSearchForm = document.querySelector("[data-help-search-form]");
-const helpSearchInput = document.querySelector("[data-help-search-input]");
 let activeFilter = "all";
 
 function normalize(value) {
@@ -119,12 +117,6 @@ if (faqSearch) {
   }
 }
 
-helpSearchForm?.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const query = helpSearchInput?.value.trim();
-  const suffix = query ? `?q=${encodeURIComponent(query)}#faq` : "#faq";
-  window.location.href = `/support${suffix}`;
-});
 
 faqSearch?.addEventListener("input", updateFaq);
 updateFaq();
