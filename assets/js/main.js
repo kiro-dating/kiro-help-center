@@ -116,65 +116,6 @@ document.addEventListener("click", (event) => {
   }
 });
 
-// Bouton « retour en haut » (utile sur les longues pages légales)
-const backToTop = document.createElement("button");
-backToTop.type = "button";
-backToTop.className = "back-to-top";
-backToTop.setAttribute("aria-label", "Retour en haut de page");
-backToTop.textContent = "↑";
-document.body.appendChild(backToTop);
-
-backToTop.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-let backToTopTick = false;
-window.addEventListener(
-  "scroll",
-  () => {
-    if (backToTopTick) return;
-    backToTopTick = true;
-    requestAnimationFrame(() => {
-      backToTop.classList.toggle("is-visible", window.scrollY > 640);
-      backToTopTick = false;
-    });
-  },
-  { passive: true }
-);
-
-// Carrousel des plans (mobile) : flèches + défilement par carte
-const planTrack = document.querySelector("[data-plan-track]");
-const planPrev = document.querySelector("[data-plan-prev]");
-const planNext = document.querySelector("[data-plan-next]");
-
-if (planTrack && planPrev && planNext) {
-  const cardStep = () => {
-    const card = planTrack.querySelector(".plan-card");
-    if (!card) return planTrack.clientWidth;
-    const styles = window.getComputedStyle(planTrack);
-    const gap = parseFloat(styles.columnGap || styles.gap) || 0;
-    return card.getBoundingClientRect().width + gap;
-  };
-
-  planPrev.addEventListener("click", () => {
-    planTrack.scrollBy({ left: -cardStep(), behavior: "smooth" });
-  });
-
-  planNext.addEventListener("click", () => {
-    planTrack.scrollBy({ left: cardStep(), behavior: "smooth" });
-  });
-
-  const updatePlanNav = () => {
-    const maxScroll = planTrack.scrollWidth - planTrack.clientWidth - 1;
-    planPrev.disabled = planTrack.scrollLeft <= 0;
-    planNext.disabled = planTrack.scrollLeft >= maxScroll;
-  };
-
-  planTrack.addEventListener("scroll", updatePlanNav, { passive: true });
-  window.addEventListener("resize", updatePlanNav);
-  updatePlanNav();
-}
-
 /* ── Ouverture directe d'une FAQ via ancre (#delete-account, #account-deletion,
    #supprimer-compte) : Google Play / App Store arrivent pile sur la section,
    deja ouverte et mise en evidence. Fonctionne au chargement ET apres refresh. */
