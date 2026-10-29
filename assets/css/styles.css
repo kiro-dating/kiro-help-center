@@ -320,6 +320,15 @@ summary {
   text-decoration: underline;
 }
 
+.btn-night {
+  background: var(--kiro-night-border);
+  color: var(--kiro-page);
+}
+
+.btn-night:hover {
+  background: var(--kiro-ink-2);
+}
+
 .btn-line {
   background: var(--kiro-page); border-color: var(--kiro-control); color: var(--kiro-ink);
 }
