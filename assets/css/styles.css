@@ -84,26 +84,6 @@
   --kiro-btn-h: 56px;
   --kiro-badge-h: 60px;
   --kiro-header-h: 76px;
-
-  /* Anciennes variables du site, rattachées aux jetons */
-  --ink: var(--kiro-ink);
-  --muted: var(--kiro-text-2);
-  --paper: var(--kiro-page);
-  --soft: var(--kiro-canvas);
-  --soft-2: var(--kiro-surface-alt);
-  --line: var(--kiro-hairline);
-  --line-strong: var(--kiro-control);
-  --coral: var(--kiro-red-action);
-  --coral-dark: var(--kiro-red-action);
-  --rose: var(--kiro-red-soft);
-  --teal: var(--kiro-ice-ink);
-  --mint: var(--kiro-ice-soft);
-  --gold: var(--kiro-warning);
-  --shadow: none;
-  --shadow-soft: none;
-  --kiro-red-500: var(--kiro-red);
-  --kiro-red-600: var(--kiro-red-action);
-  --kiro-gradient: var(--kiro-red-action);
 }
 
 @media (prefers-reduced-motion: reduce) {
