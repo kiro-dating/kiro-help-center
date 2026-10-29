@@ -774,7 +774,7 @@ summary {
   border: 1px solid var(--kiro-hairline);
   border-radius: 18px;
   background: var(--kiro-page);
-  transition: border-color var(--kiro-duration), box-shadow var(--kiro-duration);
+  transition: border-color var(--kiro-duration);
 }
 
 .qa summary {
@@ -1240,7 +1240,7 @@ summary {
 
 .qa.is-target {
   border-color: var(--kiro-red-action);
-  box-shadow: 0 0 0 3px var(--kiro-red-soft);
+  outline: 3px solid var(--kiro-red-soft);
 }
 
 /* Suppression de compte (exigence Google Play) : encadré doux une fois ouvert */
