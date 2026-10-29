@@ -11,17 +11,17 @@
 | Chemin du clone | `/home/claude/kiro/A-help/kiro-help-center-refonte` (environnement Claude, pas le Mac de Pierre) |
 | Branche | `claude/aide-refonte` (créée depuis `main`) ; branche optionnelle `claude/aide-refonte-seo` (§ 12) |
 | Commit de référence (départ) | `e8059a2` (`main`, « style(help): finitions FAQ et page 404 ») |
-| Dernier commit de code validé | `5ea282d` ; ce rapport est le commit suivant (SHA final dans `HANDOFF_FOR_REVIEW.md`) |
+| Dernier commit de code validé | `d0ab183` (après la revue indépendante, cycle 1) ; la pointe de branche est le commit de mise à jour de ce rapport (SHA dans `HANDOFF_FOR_REVIEW.md`) |
 | Module(s) | `index.html`, `support.html`, `conditions-utilisation.html`, `politique-confidentialite.html`, `securite-enfants.html`, `404.html`, `assets/css/styles.css`, `assets/js/main.js`, `assets/img/` |
 | Priorité | P2 (présentation ; aucune donnée ni backend) |
 | Statut | **IMPLÉMENTÉ + TESTÉ (local), NON POUSSÉ, NON DÉPLOYÉ** |
-| Conclusions | Refonte complète des 6 pages ; contrat 132/132 avant et après ; Lighthouse mobile 100/100/100/100 sur `/support` et `/conditions-utilisation` (polices Google bloquées, voir § 6) ; aucune régression d'URL, d'ancre ni de texte juridique détectée |
+| Conclusions | Refonte complète des 6 pages ; contrat 132/132 avant et après ; Inter hébergée sur le site, **aucune requête vers un tiers** ; Lighthouse mobile `/support` 100/100/100/100, `/conditions-utilisation` 99–100/100/100/100 (3 passages, rien de bloqué) ; aucune régression d'URL, d'ancre ni de texte juridique détectée |
 | Actions | Revue de Pierre (captures + comparaisons), décision sur la branche SEO, vérification sur appareils réels, puis push sur `main` par Pierre |
 | Tickets associés | SITE-SEO-2026-10-29 (patch `help.patch`, décision en attente) |
-| Commits correctifs | 17 commits locaux, § 3 |
+| Commits correctifs | 22 commits locaux (dont 4 de la revue, cycle 1, et 2 de rapport), § 3 |
 | Tests de validation | `node scripts/check-contract.mjs` (132/132), validation Playwright 6 pages × 7 largeurs, axe-core, Lighthouse |
 | État de déploiement | **NON EFFECTUÉ** (aucun push, aucun déploiement Vercel) |
-| Dernière vérification | 2026-10-29 (UTC) |
+| Dernière vérification | 2026-10-29 (UTC), après la revue indépendante (cycle 1) |
 | Prochaine action | Pierre relit les captures `work/captures/comparaisons/`, puis décide GO / NO-GO et le sort de `claude/aide-refonte-seo` |
 
 ## 0. Déclaration de départ (Guardian § 0)
@@ -39,13 +39,13 @@
 
 | Page | Avant | Après |
 |---|---|---|
-| Toutes | En-tête à symbole noir, menu mobile avec voile flouté (`backdrop-filter`), bouton flottant « ↑ », Inter déclarée mais jamais chargée | En-tête Kiro Solid commun (symbole rouge `#F01C43`, logotype, pastille « AIDE », navigation FAQ · Sécurité · Confidentialité · Conditions · Contact, bouton « kirodating.com ↗ »), menu mobile plein écran opaque qui piège le focus, Échap le ferme et rend le focus au bouton ; pied de page commun ; Inter via Google Fonts (`display=swap`) ; plus de bouton flottant |
+| Toutes | En-tête à symbole noir, menu mobile avec voile flouté (`backdrop-filter`), bouton flottant « ↑ », Inter déclarée mais jamais chargée | En-tête Kiro Solid commun (symbole rouge `#F01C43`, logotype, pastille « AIDE », navigation FAQ · Sécurité · Confidentialité · Conditions · Contact, bouton « kirodating.com ↗ »), menu mobile plein écran opaque qui piège le focus, Échap le ferme et rend le focus au bouton ; pied de page commun ; Inter **hébergée sur le site** (`assets/fonts/`, `font-display: swap`, préchargée), aucune requête tierce ; plus de bouton flottant |
 | `/` | Héros « Kiro Help Center » sur photo, 8 cartes, aperçu FAQ, tuiles marketing | Héros « Comment pouvons-nous t'aider ? » + grande recherche (formulaire GET natif vers `/support?q=…#faq`, marche sans JavaScript), 6 sujets, aperçu FAQ (4 questions inchangées), bloc contact sombre. `hero-connection.png` retirée |
 | `/support` | Héros, plans, FAQ + panneau contact latéral | En-tête de page, plans (pastilles de couleur, rangée défilante sur mobile), FAQ à deux colonnes (filtres verticaux collants sur desktop, rangée horizontale sur mobile, compteur « N réponses » annoncé, message « Aucune réponse trouvée… »), bloc contact sombre |
 | Pages légales | Héros + sommaire en puces + article | En-tête compact, colonne de 680 px, sélecteur de section collant « 3/13 · Compte ▾ » (mobile) ou sommaire latéral collant (≥ 1024 px), « L'essentiel », titres numérotés, précédent/suivant par section (mobile), encadré « Une question sur … ? », lien « Haut de page » |
 | `/404` | Héros + 2 boutons | Message existant + « Accueil de l'aide » et « kirodating.com ↗ » |
 
-Poids `styles.css` + `main.js` : **44 654 → 41 717 octets** (−6,6 %). `styles.css` 37 360 → 32 308 ; `main.js` 7 294 → 9 409 (menu accessible, filtres, sommaire).
+Poids `styles.css` + `main.js` : **44 654 → 43 270 octets** (−3,1 %, règle du cahier des charges respectée). `styles.css` 37 360 → 33 861 ; `main.js` 7 294 → 9 409 (menu accessible, filtres, sommaire). **Polices ajoutées** (hors règle CSS + JS) : `inter-latin-wght-normal.woff2` 48 256 o (chargé sur chaque page), `inter-latin-ext-wght-normal.woff2` 85 068 o (téléchargé seulement si la page contient des caractères du latin étendu ; c'est le cas des conditions d'utilisation), `OFL.txt` 4 477 o. En regard, `hero-connection.png` (1 045 985 o) a été retiré.
 
 ## 2. Contrat (vérifié avant toute modification puis à chaque commit)
 
@@ -88,7 +88,12 @@ Vérifications :
 | `de5641f` | refactor(aide): retirer les anciennes variables et hero-connection.png |
 | `7353602` | fix(aide): accessibilité relevée par axe et la mesure des cibles tactiles |
 | `5ea282d` | docs(aide): README à jour (Kiro Solid, symbole rouge, scripts de vérification) |
-| (suivant) | docs(aide): rapport HELP-REFONTE-2026-10-29 (ce fichier) |
+| `6b7246d` | docs(aide): rapport HELP-REFONTE-2026-10-29 (ce fichier, première version) |
+| `a7e0ae5` | feat(aide): héberger Inter sur le site, sans requête vers Google Fonts (revue C-H-01) |
+| `6cc8525` | fix(aide): texte indicatif des recherches lisible en entier à toutes les largeurs (revue C-H-05) |
+| `844193c` | style(aide): sélecteur de section mobile sans ombre (revue C-H-10) |
+| `d0ab183` | style(aide): mise en évidence de la question ciblée par un contour, pas une ombre (suite de C-H-10) |
+| (suivant) | docs(aide): rapport mis à jour après la revue indépendante, cycle 1 |
 
 Note honnête : `031659c` corrige une régression introduite par mon propre nettoyage automatique (la règle `.btn-night` avait été retirée dans `89b08e8` car encore inutilisée, puis manquait dans `3d91557`). Découverte par l'audit des classes, corrigée avant la fin.
 
@@ -96,7 +101,8 @@ Note honnête : `031659c` corrige une régression introduite par mon propre nett
 
 | Fichier | Changement | Justification |
 |---|---|---|
-| `index.html` | `<main>`, en-tête, pied de page | Accueil selon `aide-desktop` / `aide-accueil-mobile` |
+| `index.html` | `<main>`, en-tête, pied de page, préchargement de la police | Accueil selon `aide-desktop` / `aide-accueil-mobile` |
+| `assets/fonts/` | Nouveau : Inter variable (latin, latin étendu) + `OFL.txt` (SIL OFL 1.1), depuis `@fontsource-variable/inter` 5.3.0 (installé hors dépôt, dans `work/tools`) | Police hébergée, aucune requête vers Google (revue C-H-01) |
 | `support.html` | Structure de `<main>`, en-tête, pied de page (textes déplacés tels quels) | FAQ deux colonnes, filtres, contact |
 | `conditions-utilisation.html`, `politique-confidentialite.html`, `securite-enfants.html` | Habillage autour du texte légal (inchangé), `<script>` d'une ligne dans `<head>` (classe `js`) | Gabarit `page-legale-mobile`, sans décalage de mise en page |
 | `404.html` | `<main>`, en-tête, pied de page | Deux boutons demandés |
@@ -112,7 +118,7 @@ Non modifiés : `vercel.json`, `robots.txt`, `sitemap.xml`, favicon (`kiro-symbo
 
 ## 5. Tests et validations réellement exécutés
 
-Environnement : clone local, `node scripts/serve.mjs 4173`, Chromium 1243 via Playwright, `prefers-reduced-motion: reduce`. **Google Fonts est injoignable depuis ce bac à sable** (proxy 403) : les rendus utilisent la police Inter installée localement ; en production, Inter viendra de Google Fonts.
+Environnement : clone local, `node scripts/serve.mjs 4173`, Chromium 1243 via Playwright, `prefers-reduced-motion: reduce`. Depuis le cycle 1 de la revue, Inter est servie par le site lui-même : les captures et mesures utilisent exactement les fichiers qui seront déployés (vérifié : `document.fonts` charge « Inter » depuis `/assets/fonts/`).
 
 | Contrôle | Résultat |
 |---|---|
@@ -127,29 +133,30 @@ Environnement : clone local, `node scripts/serve.mjs 4173`, Chromium 1243 via Pl
 | Sélecteur de section (légal) au clavier | Entrée ouvre (`aria-expanded="true"`, « 3/13 · Compte » sur `#compte`), Échap ferme et rend le focus au bouton ; suivi au défilement vérifié (sections 3, 5, 6 selon la position) |
 | Sans JavaScript | FAQ en `<details>` natifs, recherche de l'accueil fonctionnelle (`/support?q=supprimer#faq`), sommaire légal affiché en liste de liens. Limite : le bouton du menu mobile ne fait rien (liens du pied de page disponibles) |
 | axe-core 4 (WCAG 2.0/2.1 A et AA + bonnes pratiques), 6 pages × 390 et 1440 | **0 violation** (2 corrigées pendant la validation : contraste de « Sommaire », repère `<nav>` répété) |
-| Erreurs console | 0 (hors échec de chargement de Google Fonts propre au bac à sable) |
+| Erreurs console | 0 |
+| Requêtes vers un tiers (journal Playwright, 6 pages + `/support?q=supprimer#faq`, à 390 et 1440) | **0**. 6 requêtes par page (HTML, CSS, JS, police latine, symbole, logotype), 7 sur les conditions (police latin étendu). Preuve : `work/captures/apres/requetes-reseau.json` ; Lighthouse ne liste qu'un hôte, `127.0.0.1:4173` |
 | Contrastes (calculés) | Encre/blanc 18,4:1 ; texte secondaire `#5F5F5F`/blanc 6,4:1, /canvas 6,0:1 ; corps légal `#252525` 15,3:1 ; rouge action `#D92525`/blanc 4,95:1, /canvas 4,66:1, /rouge doux 4,50:1 ; blanc/`#D92525` 4,95:1 ; `#A0A0A5`/encre 7,1:1 ; `#FF4A4A`/encre 5,6:1. `#F72C25` (3,9:1 avec du blanc) n'est utilisé pour aucun texte : le filtre actif utilise `#D92525` |
 | Mouvement | Aucune animation en boucle ; transitions de 160–220 ms ; `prefers-reduced-motion` respecté (jetons) ; défilement doux uniquement si l'utilisateur ne l'a pas désactivé, saut direct à l'arrivée depuis un lien externe |
-| Surfaces | Aucune transparence de fond, aucun `backdrop-filter` (le flou de l'ancien menu est retiré). Seule ombre : liste déroulante du sélecteur de section (mobile), assimilée au menu ouvert |
+| Surfaces | Aucune transparence de fond, aucun `backdrop-filter` (le flou de l'ancien menu est retiré), **aucune `box-shadow`** dans la feuille (revue C-H-10) |
 
 ## 6. Lighthouse (mobile, Lighthouse 12.8.2, Chromium 1243)
 
-Mesuré sur le serveur local (sans compression gzip, contrairement à Vercel). Google Fonts bloqué (`--blocked-url-patterns`) car injoignable ici.
+Mesuré sur le serveur local (sans compression gzip, contrairement à Vercel). **Après la revue (cycle 1) : rien n'est bloqué**, toutes les ressources (police comprise) viennent du site ; un seul hôte contacté.
 
 | Page | Performance | Accessibilité | Bonnes pratiques | SEO | FCP | LCP | CLS | TBT |
 |---|---|---|---|---|---|---|---|---|
 | `/support` avant (`e8059a2`) | 77 | 100 | 100 | 100 | 1,1 s | 6,8 s | 0 | 10 ms |
-| `/support` **après** | **100** | **100** | **100** | **100** | 1,5 s | 1,5 s | 0 | 0 ms |
+| `/support` **après**, 3 passages | **100 / 100 / 100** | **100** | **100** | **100** | 1,1 s | 1,6–1,7 s | 0 | 0–20 ms |
 | `/conditions-utilisation` avant | 77 | 100 | 100 | 100 | 1,1 s | 6,6 s | 0 | 0 ms |
-| `/conditions-utilisation` **après** | **100** | **100** | **100** | **100** | 1,5 s | 1,5 s | 0 | 0 ms |
+| `/conditions-utilisation` **après**, 3 passages | **99 / 100 / 99** | **100** | **100** | **100** | 1,5 s | 1,7–2,1 s | 0 | 0 ms |
 
-Second passage sans blocage (la requête Google Fonts échoue dans le bac à sable) : `/support` 99/100/96/100, `/conditions-utilisation` 100/100/96/100 ; les 96 viennent uniquement de l'erreur console « requête de police échouée », propre à cet environnement. Lighthouse signale aussi la feuille Google Fonts comme ressource bloquant le rendu (≈ 0,5–0,7 s estimés). **Les scores en production restent à mesurer** (PageSpeed Insights après un déploiement de prévisualisation). Rapports : `work/lighthouse/`.
+Écart à 99 : variation du LCP simulé (la page télécharge aussi la police latin étendu). Lighthouse signale encore `styles.css` comme ressource bloquant le rendu (≈ 0,3–0,7 s estimés) et l'absence de compression (le serveur local ne compresse pas ; Vercel le fait). Les scores de production restent à mesurer sur un aperçu (PageSpeed Insights). Rapports : `work/lighthouse/cycle1/` (premier cycle, avec Google Fonts bloqué : `work/lighthouse/`).
 
 ## 7. Captures
 
 Toutes sous `/home/claude/kiro/A-help/work/captures/` (manifeste : `MANIFEST.md`) :
 
-- `apres/` : 6 pages × 360, 375, 390, 768, 1024, 1280, 1440 (page entière) ; captures ciblées : accueil desktop et mobile, FAQ ouverte (desktop et via `#supprimer-compte`), recherche `?q=supprimer` (390 et 1440), page légale mobile, sélecteur de section ouvert, menu mobile ouvert, sommaire desktop, rendus sans JavaScript ;
+- `apres/` (régénéré après le cycle 1 ; ancienne série dans `archive-cycle0/`) : 6 pages × 360, 375, 390, 768, 1024, 1280, 1440 (page entière), `validation.json`, `requetes-reseau.json` ; captures ciblées : accueil desktop et mobile, FAQ ouverte (desktop et via `#supprimer-compte`), recherche `?q=supprimer` (390 et 1440), page légale mobile, sélecteur de section ouvert, menu mobile ouvert, sommaire desktop, rendus sans JavaScript ;
 - `avant/` : état `e8059a2` à 390 et 1440 ;
 - `maquettes/` : les 3 maquettes rendues (aide-desktop à 1440, 1024, 768, 390) ;
 - `comparaisons/` : 7 images côte à côte (maquette à gauche, refonte à droite, même largeur).
@@ -162,7 +169,7 @@ Le contenu existant fait foi ; les maquettes décident de l'apparence.
 2. **Accueil et support séparés.** `aide-desktop` montre une page unique (héros, sujets, FAQ, contact) ; selon la correspondance du cahier des charges, l'accueil reprend héros + sujets + contact (avec un aperçu FAQ de 4 questions, comme `aide-accueil-mobile`) et `/support` la FAQ.
 3. **Textes existants à la place des textes de maquette** : sous-titre du héros (texte actuel de l'accueil, et non « Compte, position… les réponses sont ici »), surtitre « Centre d'aide officiel » conservé, titre du contact « Encore besoin d'aide ? » (accueil) et texte « Écris-nous, l'équipe Kiro te répondra dès que possible. » (support), mention de copyright actuelle « © 2026 Kiro Dating. Tous droits réservés. » (la maquette affiche « 9572-2724 Québec Inc. » : non inséré, la mention attend la validation de l'avocat).
 4. **Sujets** : icônes au trait (style Lucide) au lieu des lettres C/S/A/D/×/R ; les 6 sujets aussi sur mobile (la maquette mobile en montre 5) et dans l'ordre desktop. Descriptions : textes des anciennes cartes pour Sécurité, Abonnements, Données et Règles ; lignes de la maquette pour « Compte & connexion » (« Connexion, langues, compte suspendu. ») et « Supprimer mon compte » (« La marche à suivre et ce qui est effacé. »), car elles décrivent des réponses existantes de la FAQ et retirent la mention « vérification » de l'ancienne carte.
-5. **Recherche mobile** : le bouton « Rechercher » reste visible (la maquette mobile n'en a pas) ; à 360–390 px, le texte indicatif est tronqué (« Compte, signalemen… »).
+5. **Recherche** : texte indicatif « Rechercher une réponse… » (texte de l'ancien accueil) au lieu de « Compte, signalement, abonnement… », qui était tronqué ; sous 480 px, le bouton devient un rond avec une flèche (la maquette mobile n'a pas de bouton) ; la colonne gauche de la FAQ fait 300 px sur desktop (0,36 fr dans la maquette).
 6. **Support** : le bloc « Abonnements » reste avant la FAQ (ordre du contenu existant, protégé par le contrat) ; la FAQ a son propre champ de recherche (pilule) en colonne gauche ; aucune question n'est ouverte par défaut (la maquette ouvre la première) ; le bloc contact garde ses 3 lignes existantes (Support, Contact général, Demandes couvertes) sous forme de boutons.
 7. **Filtre actif** en `#D92525` et non `#F72C25` : texte blanc de 14–15 px, contraste AA (décision d'accessibilité des fondations § 2). Le « − » de la question ouverte reste en `#F72C25` (graphique).
 8. **Pages légales** : en-tête commun (logo + menu) au lieu de la barre « ← Document légal » de la maquette ; le sélecteur de section apparaît sous l'en-tête de page puis devient collant ; pas de puces « Mis à jour le… » ni « [N] min de lecture » (aucune phrase source pour la durée) : la note légale existante (date, contact) est affichée en encadré ; titres « 1. Acceptation des conditions » (texte existant) au lieu de « 01 Acceptation » ; « L'essentiel » reprend les 3 points clés existants de chaque page et, pour les conditions et la confidentialité, la phrase d'âge minimum de la page, mot pour mot ; pas de libellés « Réservé aux adultes. » / « Respect obligatoire. » inventés ; navigation précédent/suivant sous chaque section (la maquette n'en montre qu'une).
@@ -171,47 +178,50 @@ Le contenu existant fait foi ; les maquettes décident de l'apparence.
 
 ## 9. Mentions inexactes trouvées (non corrigées)
 
-Lignes de la branche `claude/aide-refonte` (identiques au commit de ce rapport). Les pages légales demandent une relecture juridique ; la FAQ sera mise à jour dans un chantier séparé (voir aussi § 12).
+Lignes de la branche `claude/aide-refonte` après la revue (cycle 1), identiques au commit de ce rapport. Les pages légales demandent une relecture juridique ; la FAQ sera mise à jour dans un chantier séparé (voir aussi § 12).
 
 **Connexion par code SMS, numéro de téléphone, Twilio**
-- `support.html:176` (« La connexion se fait par code SMS à usage unique, Google ou Apple ») ; `support.html:371` (« depuis l'adresse ou le numéro associé à ton compte ») ; `support.html:415` (« les SMS » parmi les sous-traitants).
-- `conditions-utilisation.html:115` (point clé « Connexion par SMS à usage unique, Google ou Apple ») ; `:198` (« par code SMS à usage unique ») ; `:204` (« Les codes SMS sont à usage unique… ») ; `:214–217` (délai entre deux codes, « fournir un numéro qui t'appartient », « accès à ton téléphone ») ; `:387` (« numéro de téléphone » parmi les données) ; `:439` (« Twilio pour les codes SMS ») ; `:469` (« empreinte… du téléphone ou de l'e-mail »).
-- `politique-confidentialite.html:170–171` (« numéro de téléphone (connexion par code SMS) ») ; `:303` (« Twilio : envoi des codes SMS de connexion ») ; `:455` (Twilio parmi les transferts) ; `:489` (empreinte « du téléphone ») ; `:510` (« la connexion repose sur des codes SMS à usage unique »).
+- `support.html:174` (« La connexion se fait par code SMS à usage unique, Google ou Apple ») ; `support.html:369` (« depuis l'adresse ou le numéro associé à ton compte ») ; `support.html:413` (« les SMS » parmi les sous-traitants).
+- `conditions-utilisation.html:113` (point clé « Connexion par SMS à usage unique, Google ou Apple ») ; `:196` (« par code SMS à usage unique ») ; `:202` (« Les codes SMS sont à usage unique… ») ; `:212–215` (délai entre deux codes, « fournir un numéro qui t'appartient », « accès à ton téléphone ») ; `:385` (« numéro de téléphone » parmi les données) ; `:437` (« Twilio pour les codes SMS ») ; `:467` (« empreinte… du téléphone ou de l'e-mail »).
+- `politique-confidentialite.html:168–169` (« numéro de téléphone (connexion par code SMS) ») ; `:301` (« Twilio : envoi des codes SMS de connexion ») ; `:453` (Twilio parmi les transferts) ; `:487` (empreinte « du téléphone ») ; `:508` (« la connexion repose sur des codes SMS à usage unique »).
 
 **Inscription par téléphone et liste de pays**
-- `support.html:186–190` (« L'inscription par téléphone est disponible dans un nombre limité de pays, dont le Canada… la Belgique »).
-- `conditions-utilisation.html:177–178` (disponibilité dans une liste de pays) ; `:215` (« restriction aux pays pris en charge »).
+- `support.html:184–188` (« L'inscription par téléphone est disponible dans un nombre limité de pays, dont le Canada… la Belgique »).
+- `conditions-utilisation.html:175–176` (disponibilité dans une liste de pays) ; `:213` (« restriction aux pays pris en charge »).
 
 **Traduction des messages**
-- `support.html:103` (plan Standard : « traductions chaque jour ») ; `:255` (quotas « ou les traductions ») ; `:347–353` (question « Comment fonctionne la traduction des messages ? ») ; `:416` (« la traduction » parmi les sous-traitants).
-- `conditions-utilisation.html:442` (« Azure Translator ou LibreTranslate ») ; `:511` (« plus de traductions ») ; `:517` (quotas de traductions) ; `:592` (« traductions automatiques »).
-- `politique-confidentialite.html:241` (« les traductions de messages ») ; `:309` (services de traduction).
+- `support.html:101` (plan Standard : « traductions chaque jour ») ; `:253` (quotas « ou les traductions ») ; `:345–351` (question « Comment fonctionne la traduction des messages ? ») ; `:414` (« la traduction » parmi les sous-traitants).
+- `conditions-utilisation.html:440` (« Azure Translator ou LibreTranslate ») ; `:509` (« plus de traductions ») ; `:515` (quotas de traductions) ; `:590` (« traductions automatiques »).
+- `politique-confidentialite.html:239` (« les traductions de messages ») ; `:307` (services de traduction).
 
 **Cercles, speed dating, communautés**
-- `support.html:113` (plan Premium : « speed dating ») ; `:289` (« cercles » parmi les données effacées : conservé volontairement par SITE-SEO, exact pour les comptes existants) ; `:303–310` (question « Qu'est-ce qu'un Cercle ? », « communauté ») ; `:315–319` (question « speed dating »).
-- `conditions-utilisation.html:173` (« fonctions Cercles ») ; `:315–316` (« messages de speed dating dans les Cercles ») ; `:401` (« Cercle ») ; `:463` (« cercles » effacés) ; `:511–513` (« plus de Cercles simultanés », « speed dating ») ; `:628–629` (« les Cercles ou le speed dating »).
-- `politique-confidentialite.html:189` (« Cercles ») ; `:212` (« QR code de Cercle ») ; `:241` (« les Cercles ») ; `:481` (« cercles » effacés).
-- Faux positifs écartés : « Règles de communauté » (`index.html:123`, `conditions-utilisation.html:237`, `politique-confidentialite.html:246`) désigne les règles de conduite, pas une fonction « communautés ».
+- `support.html:111` (plan Premium : « speed dating ») ; `:287` (« cercles » parmi les données effacées : conservé volontairement par SITE-SEO, exact pour les comptes existants) ; `:301–308` (question « Qu'est-ce qu'un Cercle ? », « communauté ») ; `:313–317` (question « speed dating »).
+- `conditions-utilisation.html:171` (« fonctions Cercles ») ; `:313–314` (« messages de speed dating dans les Cercles ») ; `:399` (« Cercle ») ; `:461` (« cercles » effacés) ; `:509–511` (« plus de Cercles simultanés », « speed dating ») ; `:626–627` (« les Cercles ou le speed dating »).
+- `politique-confidentialite.html:187` (« Cercles ») ; `:210` (« QR code de Cercle ») ; `:239` (« les Cercles ») ; `:479` (« cercles » effacés).
+- Faux positifs écartés : « Règles de communauté » (`index.html:124`, `conditions-utilisation.html:235`, `politique-confidentialite.html:244`) désigne les règles de conduite, pas une fonction « communautés ».
 
 **Badge vérifié / vérification par selfie**
-- `support.html:325–331` (question « Comment obtenir le badge vérifié ? ») ; `:122` (plan Max : « badges exclusifs »).
-- `conditions-utilisation.html:357–360` (badge « vérifié » par selfie) ; `:513` (« badges exclusifs ») ; `:581` (« La vérification par selfie… »).
-- `index.html:142` (aperçu FAQ : « complète les étapes de vérification et de profil »). La carte « Profils vérifiés » de l'ancien accueil a disparu avec les tuiles marketing (refonte).
+- `support.html:323–329` (question « Comment obtenir le badge vérifié ? ») ; `:120` (plan Max : « badges exclusifs »).
+- `conditions-utilisation.html:355–358` (badge « vérifié » par selfie) ; `:511` (« badges exclusifs ») ; `:579` (« La vérification par selfie… »).
+- `index.html:143` (aperçu FAQ : « complète les étapes de vérification et de profil »). La carte « Profils vérifiés » de l'ancien accueil a disparu avec les tuiles marketing (refonte).
 
 **Autres mentions de fonctions non garanties (signalées par SITE-SEO-2026-10-29)**
-- `support.html:103` (« Super Flames »), `:113` (« mode incognito »), `:121` (« boost de visibilité inclus ») ; `conditions-utilisation.html:427` (« mode incognito »), `:509–513` (Super Flames, boosts, incognito), `:529` (« un boost »), `:628` (« Super Flames »).
+- `support.html:101` (« Super Flames »), `:111` (« mode incognito »), `:119` (« boost de visibilité inclus ») ; `conditions-utilisation.html:425` (« mode incognito »), `:507–511` (Super Flames, boosts, incognito), `:527` (« un boost »), `:626` (« Super Flames »).
 
 **Bêta, TestFlight, Telegram** : **aucune occurrence** dans les 6 pages.
 
 **Marqueurs « À CONFIRMER »** (commentaires HTML, invisibles, conservés)
-- `conditions-utilisation.html:101` (×2 : entité légale et juridiction ; validation avant publication), `:602` (droit applicable), `:619` (titulaire des droits et marques), `:670` (nom légal, juridiction, mentions de paiement).
-- `politique-confidentialite.html:103` (responsable du traitement), `:634` (responsable Loi 25, juridiction).
-- Pied de page des 6 pages (mention de copyright) : `index.html:199`, `support.html:461`, `conditions-utilisation.html:690`, `politique-confidentialite.html:653`, `securite-enfants.html:476`, `404.html:77`.
+- `conditions-utilisation.html:99` (×2 : entité légale et juridiction ; validation avant publication), `:600` (droit applicable), `:617` (titulaire des droits et marques), `:668` (nom légal, juridiction, mentions de paiement).
+- `politique-confidentialite.html:101` (responsable du traitement), `:632` (responsable Loi 25, juridiction).
+- Pied de page des 6 pages (mention de copyright) : `index.html:200`, `support.html:459`, `conditions-utilisation.html:688`, `politique-confidentialite.html:651`, `securite-enfants.html:474`, `404.html:75`.
 
 ## 10. Risques et points restants
 
-1. **Google Fonts** : requête vers un tiers (adresse IP transmise à Google) non mentionnée dans la politique de confidentialité, et feuille bloquant le rendu (≈ 0,5–0,7 s selon Lighthouse). Le cahier des charges demande Google Fonts ; je recommande, dans un second temps, d'héberger Inter (WOFF2, sous-ensemble latin) dans `assets/fonts/`. Décision de Pierre.
-2. **`.vercelignore`** : doit empêcher la publication de `scripts/` et `docs/`. Comportement avec le déploiement Git de Vercel **à confirmer** sur un déploiement de prévisualisation (sinon, ce rapport serait public à `/docs/audits/…`).
+1. **Police** : Inter est hébergée sur le site (décision de l'orchestrateur, revue C-H-01) ; le cahier des charges proposait Google Fonts. Seul le style droit est fourni : l'italique des deux `<em>` de `securite-enfants.html` (CSAE, CSAM) est simulé par le navigateur. +133 Ko de polices au maximum par visite (48 Ko sur la plupart des pages).
+2. **`.vercelignore` — vérification OBLIGATOIRE sur l'aperçu Vercel avant `main`** (revue C-H-02 : impossible à prouver localement). Les deux commandes doivent renvoyer `404` :
+   `curl -s -o /dev/null -w "%{http_code}\n" https://<aperçu>/docs/audits/KIRO_HELP_CENTER_REFONTE_2026-10-29.md`
+   `curl -s -o /dev/null -w "%{http_code}\n" https://<aperçu>/scripts/serve.mjs`
+   Si l'une renvoie `200`, ne pas publier : déplacer `docs/` et `scripts/` hors du dossier servi ou les exclure autrement.
 3. **Menu mobile sans JavaScript** : inopérant (liens du pied de page disponibles). Les autres fonctions dégradent proprement.
 4. **Nouveau paramètre `?cat=`** (sujets de l'accueil → filtre) : ajout, sans effet sans JavaScript ; non protégé par le contrat.
 5. **`<script>` en ligne** dans le `<head>` des 3 pages légales (une ligne, classe `js`) : à autoriser par empreinte si une CSP est ajoutée un jour.
@@ -225,13 +235,13 @@ Lignes de la branche `claude/aide-refonte` (identiques au commit de ce rapport).
 ## 11. Statut Git, push et déploiement
 
 - Avant : `claude/aide-refonte` = `main` @ `e8059a2`, propre.
-- Après : 17 commits locaux sur `claude/aide-refonte` (dont ce rapport) ; arbre propre. Branche optionnelle `claude/aide-refonte-seo` (§ 12).
+- Après : 22 commits locaux sur `claude/aide-refonte` (dont ce rapport et sa mise à jour) ; arbre propre. Branches optionnelles `claude/aide-refonte-seo` (première version, conservée telle quelle) et `claude/aide-refonte-seo-v2` (à jour, § 12).
 - **Push : NON EFFECTUÉ. Merge : NON EFFECTUÉ. Tag : NON. Déploiement Vercel : NON EFFECTUÉ.** Aucun remote n'est configuré dans ce clone.
 - Retour arrière : la branche est indépendante de `main` ; ne pas la fusionner suffit.
 
 ## 12. Patch SEO (`help.patch`, SITE-SEO-2026-10-29) — branche séparée
 
-Le patch n'est **pas** appliqué sur `claude/aide-refonte`. Pour faciliter la décision de Pierre, la branche `claude/aide-refonte-seo` (créée depuis la pointe finale de `claude/aide-refonte`) porte ses 18 corrections sur le nouveau balisage (`index.html` et `support.html` uniquement ; pages légales non touchées), puis met à jour la référence du contrat dans un commit séparé. Elle ne doit jamais être fusionnée dans `claude/aide-refonte`.
+Le patch n'est **pas** appliqué sur `claude/aide-refonte`. Pour faciliter la décision de Pierre, la branche **`claude/aide-refonte-seo-v2`** (créée depuis la pointe de `claude/aide-refonte` après la revue, cycle 1, par report des 3 commits SEO avec `cherry-pick`, sans rebase ; l'ancienne `claude/aide-refonte-seo`, basée sur `6b7246d`, est laissée intacte et ne doit plus servir) porte ses 18 corrections sur le nouveau balisage (`index.html` et `support.html` uniquement ; pages légales non touchées), puis met à jour la référence du contrat dans un commit séparé. Elle ne doit jamais être fusionnée dans `claude/aide-refonte`.
 
 | # | Fichier | Correction | Statut |
 |---|---|---|---|
@@ -251,6 +261,19 @@ Le patch n'est **pas** appliqué sur `claude/aide-refonte`. Pour faciliter la d�
 
 Bilan : 16 portées, 2 abandonnées (objets supprimés par la refonte). Le contrat de la branche SEO échoue sur 19 points avec l'ancienne référence (preuve qu'il détecte ces changements), puis passe avec la référence régénérée dans le commit dédié. SHA dans `HANDOFF_FOR_REVIEW.md`.
 
+## 12 bis. Revue indépendante — cycle 1 (agent C)
+
+Verdict de l'agent C sur `claude/aide-refonte` @ `6b7246d` : **RÉVISION DEMANDÉE**. Intégrité des textes, ancres, liens, accessibilité et absence de régressions : vérifiés par C.
+
+| Constat | Gravité | Problème | Correction |
+|---|---|---|---|
+| C-H-01 | Majeur | Google Fonts chargé sur les 6 pages, y compris la politique de confidentialité : requête vers un tiers que le site ne faisait pas avant (Inter déclarée, jamais chargée) et que la politique ne décrit pas | `a7e0ae5` : Inter variable hébergée dans `assets/fonts/` (latin + latin étendu, licence OFL jointe), `@font-face` avec `font-display: swap` et `unicode-range`, préchargement du fichier latin, toute référence à `fonts.googleapis.com` / `fonts.gstatic.com` retirée. Preuve : 0 requête tierce sur les 6 pages (journal Playwright, `requetes-reseau.json`) ; Lighthouse relancé sans rien bloquer (§ 6) |
+| C-H-05 | Mineur | Texte indicatif de recherche tronqué (accueil à 360–390 px, colonne FAQ à 1440 px) | `6cc8525` : texte « Rechercher une réponse… », bouton rond à flèche sous 480 px, colonne FAQ de 300 px et champ en 15 px sur desktop. Mesuré de 360 à 1440 px : le texte tient. Aucun texte protégé modifié |
+| C-H-10 | Info | Ombre sous la liste du sélecteur de section mobile (les fondations ne l'autorisent que sous le menu mobile) | `844193c` : ombre retirée, filet `#ECECEC` conservé ; `d0ab183` : l'anneau temporaire de la question ciblée passe de `box-shadow` à `outline`. Plus aucune `box-shadow` |
+| C-H-02 | Mineur | `.vercelignore` non prouvable localement | Conservé ; vérification `curl` obligatoire sur l'aperçu documentée au § 10, point 2, et reprise dans la recommandation |
+
+Après corrections : contrat 132/132 ; validation 6 pages × 7 largeurs refaite (aucun défilement horizontal, aucune cible < 44 px, liens profonds conformes, clavier conforme, axe-core 0 violation, 0 erreur console) ; captures `apres/` régénérées ; branche SEO reconstruite en `claude/aide-refonte-seo-v2`.
+
 ## 13. Recommandation
 
-**GO conditionnel** pour une revue visuelle par Pierre puis un déploiement de **prévisualisation** Vercel, avec trois vérifications avant `main` : (1) `.vercelignore` effectif (pas de `/docs` ni `/scripts` publics), (2) PageSpeed Insights mobile sur l'aperçu, (3) essai sur un iPhone et un Android réels des liens `/support#supprimer-compte`, `/support?q=supprimer#faq` et du menu. **NO-GO** pour une mise en production directe sans ces trois vérifications. Contrat, contenu juridique et ancres Google Play : aucune régression détectée.
+**GO conditionnel** pour une revue visuelle par Pierre puis un déploiement de **prévisualisation** Vercel, avec trois vérifications avant `main` : (1) `.vercelignore` effectif, prouvé par les deux `curl` du § 10 (réponses `404`), (2) PageSpeed Insights mobile sur l'aperçu, (3) essai sur un iPhone et un Android réels des liens `/support#supprimer-compte`, `/support?q=supprimer#faq` et du menu. **NO-GO** pour une mise en production directe sans ces trois vérifications. Contrat, contenu juridique et ancres Google Play : aucune régression détectée.
