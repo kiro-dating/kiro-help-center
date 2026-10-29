@@ -3,6 +3,7 @@
 const body = document.body;
 const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 const desktop = window.matchMedia("(min-width: 1024px)");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 // URL propres (cleanUrls Vercel) : « /support » et l'ancien « /support.html »
 // désignent la même page. On compare les chemins normalisés, sans fragment.
@@ -61,10 +62,12 @@ if (menuButton && menu) {
   });
 }
 
+// FAQ (support) : recherche et filtres en amélioration progressive.
 const faqSearch = document.querySelector("[data-faq-search]");
-const faqItems = Array.from(document.querySelectorAll("[data-faq-item]"));
-const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+const faqItems = $$("[data-faq-item]");
+const filterButtons = $$("[data-filter]");
 const resultCount = document.querySelector("[data-result-count]");
+const faqEmpty = document.querySelector("[data-faq-empty]");
 let activeFilter = "all";
 
 function normalize(value) {
@@ -77,86 +80,70 @@ function normalize(value) {
 function updateFaq() {
   if (!faqItems.length) return;
 
-  const query = normalize(faqSearch?.value || "");
+  const query = normalize(faqSearch?.value.trim() || "");
   let visible = 0;
 
   faqItems.forEach((item) => {
-    const category = item.dataset.category || "";
-    const text = normalize(item.textContent || "");
-    const matchesFilter = activeFilter === "all" || category === activeFilter;
-    const matchesSearch = !query || text.includes(query);
-    const shouldShow = matchesFilter && matchesSearch;
-
-    item.hidden = !shouldShow;
-    if (shouldShow) visible += 1;
+    const matchesFilter = activeFilter === "all" || item.dataset.category === activeFilter;
+    const matchesSearch = !query || normalize(item.textContent || "").includes(query);
+    item.hidden = !(matchesFilter && matchesSearch);
+    if (!item.hidden) visible += 1;
   });
 
-  if (resultCount) {
-    const label = visible > 1 ? "réponses trouvées" : "réponse trouvée";
-    resultCount.textContent = `${visible} ${label}`;
-  }
+  if (resultCount) resultCount.textContent = `${visible} ${visible > 1 ? "réponses" : "réponse"}`;
+  if (faqEmpty) faqEmpty.hidden = visible !== 0;
+}
+
+function setFilter(name) {
+  activeFilter = name;
+  filterButtons.forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.dataset.filter === name));
+  });
+  updateFaq();
 }
 
 filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    activeFilter = button.dataset.filter || "all";
-    filterButtons.forEach((item) => {
-      item.classList.remove("is-active");
-      item.setAttribute("aria-pressed", "false");
-    });
-    button.classList.add("is-active");
-    button.setAttribute("aria-pressed", "true");
-    updateFaq();
-  });
+  const name = button.dataset.filter || "all";
+  const count = button.querySelector("[data-count]");
+  if (count) count.textContent = faqItems.filter((item) => name === "all" || item.dataset.category === name).length;
+  button.addEventListener("click", () => setFilter(name));
 });
 
 if (faqSearch) {
+  // Liens existants : /support?q=supprimer#faq ; sujets de l'accueil : ?cat=compte
   const initialQuery = new URLSearchParams(window.location.search).get("q");
-  if (initialQuery) {
-    faqSearch.value = initialQuery;
-  }
+  if (initialQuery) faqSearch.value = initialQuery;
+  const initialCategory = new URLSearchParams(window.location.search).get("cat");
+  if (filterButtons.some((button) => button.dataset.filter === initialCategory)) activeFilter = initialCategory;
+  faqSearch.addEventListener("input", updateFaq);
+  setFilter(activeFilter);
 }
 
-
-faqSearch?.addEventListener("input", updateFaq);
-updateFaq();
-
-/* ── Ouverture directe d'une FAQ via ancre (#delete-account, #account-deletion,
-   #supprimer-compte) : Google Play / App Store arrivent pile sur la section,
-   deja ouverte et mise en evidence. Fonctionne au chargement ET apres refresh. */
+/* Ouverture directe d'une question via ancre (#delete-account, #account-deletion,
+   #supprimer-compte, #securite…) : Google Play, l'App Store et l'app arrivent
+   sur la question déjà ouverte, visible sous l'en-tête collant. */
 (function () {
   var DELETE_ALIASES = ["delete-account", "account-deletion", "supprimer-compte"];
   function resolveDetails(hash) {
     if (!hash) return null;
-    if (DELETE_ALIASES.indexOf(hash) !== -1) {
-      return document.getElementById("supprimer-compte");
-    }
+    if (DELETE_ALIASES.indexOf(hash) !== -1) return document.getElementById("supprimer-compte");
     var el = document.getElementById(hash);
     if (!el) return null;
-    return el.tagName === "DETAILS"
-      ? el
-      : el.closest
-      ? el.closest("details.faq-item")
-      : null;
+    return el.tagName === "DETAILS" ? el : el.closest("details.qa");
   }
   function openFromHash() {
-    var hash = (window.location.hash || "").replace(/^#/, "");
-    var details = resolveDetails(hash);
+    var details = resolveDetails(decodeURIComponent(window.location.hash.slice(1)));
     if (!details) return;
-    details.hidden = false; // annule un eventuel filtre categorie/recherche
-    details.open = true; // deplie la reponse
-    details.classList.add("faq-highlight");
+    details.hidden = false; // annule un éventuel filtre catégorie/recherche
+    details.open = true;
+    details.classList.add("is-target");
     window.setTimeout(function () {
-      details.classList.remove("faq-highlight");
+      details.classList.remove("is-target");
     }, 2600);
-    window.setTimeout(function () {
-      details.scrollIntoView({ behavior: "smooth", block: "center" });
-    }, 90);
+    window.requestAnimationFrame(function () {
+      details.scrollIntoView({ block: "start", behavior: reduceMotion.matches ? "auto" : "smooth" });
+    });
   }
   window.addEventListener("hashchange", openFromHash);
-  if (document.readyState === "loading") {
-    window.addEventListener("DOMContentLoaded", openFromHash);
-  } else {
-    openFromHash();
-  }
+  openFromHash();
 })();

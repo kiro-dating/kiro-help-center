@@ -55,14 +55,14 @@
     </header>
 
     <main id="contenu">
-      <section class="page-hero">
-        <div class="section-inner">
+      <section class="page-head">
+        <div class="wrap">
           <p class="eyebrow">Support</p>
           <h1>
             <span>Centre d’aide</span>
             <span class="kiro-wordmark kiro-wordmark--heading" role="img" aria-label="Kiro"></span>
           </h1>
-          <p>
+          <p class="lead">
             Trouve une réponse rapide sur ton compte, ta position, la sécurité,
             la modération des photos, les paiements ou la suppression de compte.
           </p>
@@ -73,20 +73,19 @@
         </div>
       </section>
 
-      <section class="band surface compact" id="abonnements">
-        <div class="section-inner">
-          <div class="section-head">
-            <div>
+      <section class="wrap block plans" id="abonnements" aria-labelledby="abonnements-titre">
+        <div class="block-head plans-head">
+          <div>
               <p class="eyebrow">Abonnements</p>
-              <h2>Gratuit + trois niveaux premium.</h2>
+              <h2 id="abonnements-titre">Gratuit + trois niveaux premium.</h2>
             </div>
-            <p>
+          <p>
               Un plan gratuit complet, trois plans payants et un essai gratuit
               possible. Les prix et offres affichés dans l’application font foi.
             </p>
-          </div>
+        </div>
 
-          <div class="plan-grid" aria-label="Plans Kiro">
+        <div class="plan-grid" role="region" tabindex="0" aria-label="Plans Kiro">
             <article class="plan-card">
               <span>Gratuit</span>
               <h3>Gratuit</h3>
@@ -123,77 +122,55 @@
                 support prioritaire et badges exclusifs.
               </p>
             </article>
-          </div>
         </div>
       </section>
 
-      <section class="band">
-        <div class="section-inner support-grid">
-          <div class="faq-panel" id="faq">
+      <section class="wrap block faq" id="faq" aria-labelledby="faq-titre">
+        <div class="faq-grid">
+          <div class="faq-side">
             <p class="eyebrow">Questions fréquentes</p>
-            <h2>FAQ</h2>
+            <h2 id="faq-titre">FAQ</h2>
 
-            <div class="support-tools" aria-label="Outils de recherche FAQ">
-              <div class="search-field">
-                <label for="faq-search">Rechercher</label>
+            <div class="faq-tools">
+              <div class="search search-field">
+                <svg class="search-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
+                <label class="sr-only" for="faq-search">Rechercher</label>
                 <input
                   id="faq-search"
                   type="search"
                   data-faq-search
-                  placeholder="Compte, signalement, abonnement..."
+                  placeholder="Compte, signalement, abonnement…"
                   autocomplete="off"
+                  enterkeyhint="search"
                 />
               </div>
 
-              <div class="filter-list" aria-label="Filtrer par catégorie">
-                <button
-                  class="filter-button is-active"
-                  type="button"
-                  data-filter="all"
-                  aria-pressed="true"
-                >
-                  Tout
+              <div class="filters" role="group" aria-label="Filtrer par catégorie">
+                <button class="filter" type="button" data-filter="all" aria-pressed="true">
+                  Tout<span class="filter-n" data-count data-ui></span>
                 </button>
-                <button
-                  class="filter-button"
-                  type="button"
-                  data-filter="compte"
-                  aria-pressed="false"
-                >
-                  Compte
+                <button class="filter" type="button" data-filter="compte" aria-pressed="false">
+                  Compte<span class="filter-n" data-count data-ui></span>
                 </button>
-                <button
-                  class="filter-button"
-                  type="button"
-                  data-filter="donnees"
-                  aria-pressed="false"
-                >
-                  Données
+                <button class="filter" type="button" data-filter="donnees" aria-pressed="false">
+                  Données<span class="filter-n" data-count data-ui></span>
                 </button>
-                <button
-                  class="filter-button"
-                  type="button"
-                  data-filter="securite"
-                  aria-pressed="false"
-                >
-                  Sécurité
+                <button class="filter" type="button" data-filter="securite" aria-pressed="false">
+                  Sécurité<span class="filter-n" data-count data-ui></span>
                 </button>
-                <button
-                  class="filter-button"
-                  type="button"
-                  data-filter="abonnement"
-                  aria-pressed="false"
-                >
-                  Abonnements
+                <button class="filter" type="button" data-filter="abonnement" aria-pressed="false">
+                  Abonnements<span class="filter-n" data-count data-ui></span>
                 </button>
               </div>
             </div>
+          </div>
 
-            <p class="result-count" data-result-count aria-live="polite"></p>
+          <div class="faq-main">
+            <p class="faq-count" data-result-count aria-live="polite"></p>
 
-            <div class="faq-list">
-              <details class="faq-item" data-faq-item data-category="compte">
-                <summary>Pourquoi <span class="kiro-text">Kiro</span> ne me demande pas de mot de passe ?</summary>
+            <div class="qa-list">
+              <details class="qa" data-faq-item data-category="compte">
+                <summary><span class="qa-q">Pourquoi <span class="kiro-text">Kiro</span> ne me demande pas de mot de passe ?</span></summary>
                 <p>
                   <span class="kiro-text">Kiro</span> ne stocke aucun mot de passe.
                   La connexion se fait par code SMS à usage unique, Google ou
@@ -203,8 +180,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="compte">
-                <summary>Qui peut créer un compte ?</summary>
+              <details class="qa" data-faq-item data-category="compte">
+                <summary><span class="qa-q">Qui peut créer un compte ?</span></summary>
                 <p>
                   Tu dois avoir au moins 18 ans. L’inscription par téléphone est
                   disponible dans un nombre limité de pays, dont le Canada, les
@@ -214,8 +191,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="donnees">
-                <summary>Qui peut voir ma position ?</summary>
+              <details class="qa" data-faq-item data-category="donnees">
+                <summary><span class="qa-q">Qui peut voir ma position ?</span></summary>
                 <p>
                   Les autres utilisateurs ne voient jamais tes coordonnées
                   exactes. Ils voient seulement ta ville, ton pays et une
@@ -224,8 +201,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="donnees">
-                <summary>Pourquoi mon adresse ou mon domicile n’apparaît jamais ?</summary>
+              <details class="qa" data-faq-item data-category="donnees">
+                <summary><span class="qa-q">Pourquoi mon adresse ou mon domicile n’apparaît jamais ?</span></summary>
                 <p>
                   Les adresses résidentielles, lieux sensibles et lieux liés aux
                   mineurs sont rejetés des lieux favoris. Seuls des lieux publics
@@ -234,8 +211,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="securite">
-                <summary>Comment fonctionne la modération des photos ?</summary>
+              <details class="qa" data-faq-item data-category="securite">
+                <summary><span class="qa-q">Comment fonctionne la modération des photos ?</span></summary>
                 <p>
                   Toutes les photos de profil sont analysées avant publication.
                   Une photo peut être refusée si elle ne montre pas un visage
@@ -245,12 +222,12 @@
               </details>
 
               <details
-                class="faq-item"
+                class="qa"
                 id="securite"
                 data-faq-item
                 data-category="securite"
               >
-                <summary>Que se passe-t-il quand je bloque quelqu’un ?</summary>
+                <summary><span class="qa-q">Que se passe-t-il quand je bloque quelqu’un ?</span></summary>
                 <p>
                   Le blocage est immédiat, met fin au match et empêche la
                   personne de te recontacter via l’application. Il peut persister
@@ -258,8 +235,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="securite">
-                <summary>Comment signaler ou bloquer quelqu’un ?</summary>
+              <details class="qa" data-faq-item data-category="securite">
+                <summary><span class="qa-q">Comment signaler ou bloquer quelqu’un ?</span></summary>
                 <p>
                   Depuis une conversation, utilise l’option de signalement,
                   choisis un motif et ajoute les détails utiles ; tu peux aussi
@@ -271,8 +248,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="abonnement">
-                <summary>Comment fonctionnent les quotas gratuits ?</summary>
+              <details class="qa" data-faq-item data-category="abonnement">
+                <summary><span class="qa-q">Comment fonctionnent les quotas gratuits ?</span></summary>
                 <p>
                   Le plan gratuit inclut des quotas quotidiens, par exemple
                   pour les Flames, les messages ou les traductions, qui se
@@ -283,8 +260,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="abonnement">
-                <summary>Comment annuler mon abonnement ?</summary>
+              <details class="qa" data-faq-item data-category="abonnement">
+                <summary><span class="qa-q">Comment annuler mon abonnement ?</span></summary>
                 <p>
                   Les achats passent par l’App Store ou Google Play. Tu dois
                   annuler l’abonnement dans les réglages du store concerné, au
@@ -299,12 +276,12 @@
               <span id="delete-account" class="faq-anchor" aria-hidden="true"></span>
               <span id="account-deletion" class="faq-anchor" aria-hidden="true"></span>
               <details
-                class="faq-item"
+                class="qa qa-key"
                 id="supprimer-compte"
                 data-faq-item
                 data-category="compte"
               >
-                <summary>Comment supprimer mon compte ?</summary>
+                <summary><span class="qa-q">Comment supprimer mon compte ?</span></summary>
                 <p>
                   Ouvre l’application, va dans les réglages, puis dans la section
                   compte, et choisis la suppression du compte. La suppression
@@ -322,8 +299,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="compte">
-                <summary>Qu’est-ce qu’un Cercle ?</summary>
+              <details class="qa" data-faq-item data-category="compte">
+                <summary><span class="qa-q">Qu’est-ce qu’un Cercle ?</span></summary>
                 <p>
                   Un Cercle est une communauté <span class="kiro-text">Kiro</span>
                   créée autour d’un créateur, d’une marque ou d’un événement. Tu
@@ -334,8 +311,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="compte">
-                <summary>Qu’est-ce que le speed dating dans <span class="kiro-text">Kiro</span> ?</summary>
+              <details class="qa" data-faq-item data-category="compte">
+                <summary><span class="qa-q">Qu’est-ce que le speed dating dans <span class="kiro-text">Kiro</span> ?</span></summary>
                 <p>
                   Le speed dating propose des conversations éphémères au sein
                   d’un Cercle. Les messages sont temporaires et visibles
@@ -344,8 +321,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="securite">
-                <summary>Comment obtenir le badge vérifié ?</summary>
+              <details class="qa" data-faq-item data-category="securite">
+                <summary><span class="qa-q">Comment obtenir le badge vérifié ?</span></summary>
                 <p>
                   Lance la vérification par selfie depuis ton profil. Le badge
                   vérifié confirme que tes photos correspondent bien à toi et te
@@ -355,8 +332,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="securite">
-                <summary>Quels conseils pour se rencontrer en toute sécurité ?</summary>
+              <details class="qa" data-faq-item data-category="securite">
+                <summary><span class="qa-q">Quels conseils pour se rencontrer en toute sécurité ?</span></summary>
                 <p>
                   Reste dans le chat <span class="kiro-text">Kiro</span> au
                   début, ne partage jamais d’informations financières, n’envoie
@@ -366,8 +343,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="donnees">
-                <summary>Comment fonctionne la traduction des messages ?</summary>
+              <details class="qa" data-faq-item data-category="donnees">
+                <summary><span class="qa-q">Comment fonctionne la traduction des messages ?</span></summary>
                 <p>
                   Tu peux traduire un message du chat à la demande, avec support
                   du créole haïtien. Le texte est envoyé à un service de
@@ -377,8 +354,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="compte">
-                <summary>Dans quelles langues <span class="kiro-text">Kiro</span> est-il disponible ?</summary>
+              <details class="qa" data-faq-item data-category="compte">
+                <summary><span class="qa-q">Dans quelles langues <span class="kiro-text">Kiro</span> est-il disponible ?</span></summary>
                 <p>
                   <span class="kiro-text">Kiro</span> est disponible en français,
                   en anglais, en espagnol et en créole haïtien. Le français est
@@ -386,8 +363,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="compte">
-                <summary>Mon compte a été suspendu ou banni, que faire ?</summary>
+              <details class="qa" data-faq-item data-category="compte">
+                <summary><span class="qa-q">Mon compte a été suspendu ou banni, que faire ?</span></summary>
                 <p>
                   Si tu penses qu’il s’agit d’une erreur, écris à
                   <a href="mailto:support@kirosocial.com">support@kirosocial.com</a>
@@ -397,8 +374,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="abonnement">
-                <summary>Comment fonctionne l’essai gratuit ?</summary>
+              <details class="qa" data-faq-item data-category="abonnement">
+                <summary><span class="qa-q">Comment fonctionne l’essai gratuit ?</span></summary>
                 <p>
                   Un essai gratuit peut être proposé sur certains plans. La
                   durée et les conditions affichées dans l’application font foi.
@@ -408,8 +385,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="abonnement">
-                <summary>Comment restaurer mes achats ?</summary>
+              <details class="qa" data-faq-item data-category="abonnement">
+                <summary><span class="qa-q">Comment restaurer mes achats ?</span></summary>
                 <p>
                   Si ton abonnement n’apparaît plus après un changement
                   d’appareil ou une réinstallation, utilise l’option de
@@ -418,8 +395,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="abonnement">
-                <summary>Comment obtenir un remboursement ?</summary>
+              <details class="qa" data-faq-item data-category="abonnement">
+                <summary><span class="qa-q">Comment obtenir un remboursement ?</span></summary>
                 <p>
                   Les paiements sont traités par l’App Store et Google Play. Les
                   demandes de remboursement suivent les politiques d’Apple et de
@@ -429,8 +406,8 @@
                 </p>
               </details>
 
-              <details class="faq-item" data-faq-item data-category="donnees">
-                <summary>Est-ce que <span class="kiro-text">Kiro</span> vend mes données ?</summary>
+              <details class="qa" data-faq-item data-category="donnees">
+                <summary><span class="qa-q">Est-ce que <span class="kiro-text">Kiro</span> vend mes données ?</span></summary>
                 <p>
                   Non. <span class="kiro-text">Kiro</span> ne vend pas tes données
                   personnelles. Certaines données peuvent être traitées par des
@@ -440,33 +417,41 @@
                 </p>
               </details>
             </div>
+            <p class="faq-empty" data-faq-empty data-ui hidden>
+              Aucune réponse trouvée. Écris-nous à
+              <a href="mailto:support@kirosocial.com">support@kirosocial.com</a>.
+            </p>
           </div>
+        </div>
+      </section>
 
-          <aside class="contact-panel" id="contact" aria-label="Contact support">
+      <section class="wrap block contact" id="contact" aria-labelledby="contact-titre">
+        <div class="contact-card contact-grid on-dark">
+          <div class="contact-txt">
             <p class="eyebrow">Contact</p>
-            <h2>Besoin d’aide ?</h2>
+            <h2 id="contact-titre">Besoin d’aide ?</h2>
             <p>
               Écris-nous, l’équipe <span class="kiro-text">Kiro</span> te
               répondra dès que possible.
             </p>
+          </div>
 
-            <div class="contact-meta">
-              <div class="meta-row">
-                <span>Support</span>
-                <strong><a href="mailto:support@kirosocial.com">support@kirosocial.com</a></strong>
-              </div>
-              <div class="meta-row">
-                <span>Contact général</span>
-                <strong><a href="mailto:contact@kirosocial.com">contact@kirosocial.com</a></strong>
-              </div>
-              <div class="meta-row">
-                <span>Demandes couvertes</span>
-                <strong>Compte, sécurité, signalement, données et abonnements</strong>
-              </div>
+          <div class="contact-meta">
+            <div class="meta-row">
+              <span>Support</span>
+              <strong><a class="btn btn-red btn-lg" href="mailto:support@kirosocial.com">support@kirosocial.com</a></strong>
             </div>
+            <div class="meta-row">
+              <span>Contact général</span>
+              <strong><a class="btn btn-night btn-lg" href="mailto:contact@kirosocial.com">contact@kirosocial.com</a></strong>
+            </div>
+            <div class="meta-row">
+              <span>Demandes couvertes</span>
+              <strong>Compte, sécurité, signalement, données et abonnements</strong>
+            </div>
+          </div>
 
-            <p class="form-note">Réponse par e-mail dans les meilleurs délais.</p>
-          </aside>
+          <p class="form-note">Réponse par e-mail dans les meilleurs délais.</p>
         </div>
       </section>
     </main>
