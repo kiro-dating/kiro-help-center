@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>document.documentElement.className += " js";</script>
     <meta name="theme-color" content="#ffffff" />
     <meta
       name="description"
@@ -17,7 +18,7 @@
     <link rel="stylesheet" href="/assets/css/styles.css" />
     <script src="/assets/js/main.js" defer></script>
   </head>
-  <body>
+  <body class="legal">
     <a class="skip-link" href="#contenu">Aller au contenu</a>
 
     <header class="hdr">
@@ -55,41 +56,44 @@
     </header>
 
     <main id="contenu">
-      <section class="page-hero">
-        <div class="section-inner">
-          <p class="eyebrow">Document légal</p>
-          <h1>Politique de confidentialité</h1>
-          <p>
-            Cette politique explique quelles données personnelles
-            <span class="kiro-text">Kiro</span> collecte, pourquoi, avec qui
-            elles peuvent être partagées, comment la publicité fonctionne et
-            comment tu peux garder le contrôle.
-          </p>
-          <div class="page-actions">
-            <a class="btn btn-ink" href="#objet">Commencer la lecture</a>
-            <a class="btn btn-line" href="#publicite">Publicité et choix</a>
+      <section class="page-head legal-head">
+        <div class="wrap">
+          <div class="legal-head-in">
+            <p class="eyebrow">Document légal</p>
+            <h1>Politique de confidentialité</h1>
+            <p class="lead">
+              Cette politique explique quelles données personnelles
+              <span class="kiro-text">Kiro</span> collecte, pourquoi, avec qui
+              elles peuvent être partagées, comment la publicité fonctionne et
+              comment tu peux garder le contrôle.
+            </p>
           </div>
         </div>
       </section>
 
-      <section class="band">
-        <div class="section-inner layout">
-          <aside class="toc" aria-label="Sommaire">
-            <strong>Sommaire</strong>
-            <a href="#objet">Objet et portée</a>
-            <a href="#donnees">Données collectées</a>
-            <a href="#finalites">Finalités</a>
-            <a href="#localisation">Localisation et lieux</a>
-            <a href="#partage">Partage avec des tiers</a>
-            <a href="#publicite">Publicité</a>
-            <a href="#transferts">Transferts hors du Canada</a>
-            <a href="#conservation">Conservation et suppression</a>
-            <a href="#securite">Sécurité</a>
-            <a href="#droits">Tes droits</a>
-            <a href="#age">Âge minimum</a>
-            <a href="#modifications">Modifications</a>
-            <a href="#contact">Contact</a>
-          </aside>
+      <div class="wrap legal-layout">
+          <nav class="toc" aria-label="Sommaire" data-toc>
+            <p class="toc-title">Sommaire</p>
+            <button class="toc-toggle" type="button" data-toc-toggle aria-expanded="false" aria-controls="toc-list">
+              <span><span class="sr-only">Section actuelle : </span><span data-toc-current>Sommaire</span></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+            </button>
+            <ol class="toc-list" id="toc-list">
+              <li><a href="#objet">Objet et portée</a></li>
+              <li><a href="#donnees">Données collectées</a></li>
+              <li><a href="#finalites">Finalités</a></li>
+              <li><a href="#localisation">Localisation et lieux</a></li>
+              <li><a href="#partage">Partage avec des tiers</a></li>
+              <li><a href="#publicite">Publicité</a></li>
+              <li><a href="#transferts">Transferts hors du Canada</a></li>
+              <li><a href="#conservation">Conservation et suppression</a></li>
+              <li><a href="#securite">Sécurité</a></li>
+              <li><a href="#droits">Tes droits</a></li>
+              <li><a href="#age">Âge minimum</a></li>
+              <li><a href="#modifications">Modifications</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ol>
+          </nav>
 
           <article class="content">
             <p class="legal-note">
@@ -99,23 +103,39 @@
               <!-- À CONFIRMER (avocat) : entité légale responsable du traitement des données et juridiction applicable. Document à faire valider avant publication. -->
             </p>
 
-            <div class="key-points" aria-label="Points clés confidentialité Kiro">
-              <div class="key-point">
-                <strong>Position exacte jamais exposée</strong>
-                <p>Ville, pays et distance approximative seulement.</p>
+            <div class="essentiel">
+              <p class="ess-title" data-ui>L’essentiel</p>
+              <div class="key-point" data-ui>
+                <span class="ess-ico ess-ink" aria-hidden="true" data-ui>18+</span>
+                <p><span class="kiro-text">Kiro</span> est réservé aux personnes de 18 ans et plus et n’est pas destiné aux mineurs.</p>
               </div>
-              <div class="key-point">
-                <strong>Aucune vente de tes données</strong>
-                <p>Ton profil, tes photos et tes messages ne sont jamais vendus.</p>
-              </div>
-              <div class="key-point">
-                <strong>Publicité limitée et encadrée</strong>
-                <p>Plan gratuit seulement, avec tes choix de consentement respectés.</p>
-              </div>
+              <ul class="key-points" aria-label="Points clés confidentialité Kiro">
+                <li class="key-point">
+                  <span class="ess-ico ess-ice" aria-hidden="true" data-ui><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></svg></span>
+                  <div>
+                    <strong>Position exacte jamais exposée</strong>
+                    <p>Ville, pays et distance approximative seulement.</p>
+                  </div>
+                </li>
+                <li class="key-point">
+                  <span class="ess-ico ess-red" aria-hidden="true" data-ui><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" /></svg></span>
+                  <div>
+                    <strong>Aucune vente de tes données</strong>
+                    <p>Ton profil, tes photos et tes messages ne sont jamais vendus.</p>
+                  </div>
+                </li>
+                <li class="key-point">
+                  <span class="ess-ico ess-ink" aria-hidden="true" data-ui><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v12H8l-4 4z" /></svg></span>
+                  <div>
+                    <strong>Publicité limitée et encadrée</strong>
+                    <p>Plan gratuit seulement, avec tes choix de consentement respectés.</p>
+                  </div>
+                </li>
+              </ul>
             </div>
 
             <section id="objet">
-              <h2>1. Objet et portée</h2>
+              <h2><span class="sec-num">1.</span> Objet et portée</h2>
               <p>
                 <span class="kiro-text">Kiro</span> est une application mobile de
                 rencontres et de connexions sociales. Cette politique explique
@@ -134,8 +154,12 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-ink" href="#donnees">Données collectées →</a>
+            </nav>
+
             <section id="donnees">
-              <h2>2. Données collectées</h2>
+              <h2><span class="sec-num">2.</span> Données collectées</h2>
               <p>
                 Selon les fonctionnalités que tu utilises,
                 <span class="kiro-text">Kiro</span> peut traiter les catégories
@@ -202,8 +226,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#objet">← Objet et portée</a>
+              <a class="btn btn-ink" href="#finalites">Finalités →</a>
+            </nav>
+
             <section id="finalites">
-              <h2>3. Finalités</h2>
+              <h2><span class="sec-num">3.</span> Finalités</h2>
               <p>
                 Ces données servent à fournir le service : créer et gérer ton
                 compte, afficher ton profil, proposer des connexions
@@ -225,8 +254,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#donnees">← Données collectées</a>
+              <a class="btn btn-ink" href="#localisation">Localisation et lieux →</a>
+            </nav>
+
             <section id="localisation">
-              <h2>4. Localisation et lieux</h2>
+              <h2><span class="sec-num">4.</span> Localisation et lieux</h2>
               <p>
                 Tes coordonnées exactes ne sont jamais visibles par les autres
                 utilisateurs. Les autres voient uniquement ta ville, ton pays et
@@ -251,8 +285,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#finalites">← Finalités</a>
+              <a class="btn btn-ink" href="#partage">Partage avec des tiers →</a>
+            </nav>
+
             <section id="partage">
-              <h2>5. Partage avec des tiers</h2>
+              <h2><span class="sec-num">5.</span> Partage avec des tiers</h2>
               <p>
                 <span class="kiro-text">Kiro</span> ne vend pas tes données
                 personnelles contre de l’argent. Elles ne sont communiquées
@@ -281,8 +320,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#localisation">← Localisation et lieux</a>
+              <a class="btn btn-ink" href="#publicite">Publicité →</a>
+            </nav>
+
             <section id="publicite">
-              <h2>6. Publicité</h2>
+              <h2><span class="sec-num">6.</span> Publicité</h2>
               <h3>Ce que tu peux voir</h3>
               <p>
                 Sur le plan gratuit, <span class="kiro-text">Kiro</span> peut
@@ -396,8 +440,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#partage">← Partage avec des tiers</a>
+              <a class="btn btn-ink" href="#transferts">Transferts hors du Canada →</a>
+            </nav>
+
             <section id="transferts">
-              <h2>7. Transferts hors du Canada</h2>
+              <h2><span class="sec-num">7.</span> Transferts hors du Canada</h2>
               <p>
                 Les données principales de <span class="kiro-text">Kiro</span>
                 sont hébergées au Canada. Certains prestataires mentionnés à la
@@ -411,8 +460,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#publicite">← Publicité</a>
+              <a class="btn btn-ink" href="#conservation">Conservation et suppression →</a>
+            </nav>
+
             <section id="conservation">
-              <h2>8. Conservation et suppression</h2>
+              <h2><span class="sec-num">8.</span> Conservation et suppression</h2>
               <p>
                 <span class="kiro-text">Kiro</span> conserve les données aussi
                 longtemps que nécessaire pour fournir le service, prévenir la
@@ -444,8 +498,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#transferts">← Transferts hors du Canada</a>
+              <a class="btn btn-ink" href="#securite">Sécurité →</a>
+            </nav>
+
             <section id="securite">
-              <h2>9. Sécurité</h2>
+              <h2><span class="sec-num">9.</span> Sécurité</h2>
               <p>
                 <span class="kiro-text">Kiro</span> ne stocke aucun mot de
                 passe : la connexion repose sur des codes SMS à usage unique ou
@@ -469,8 +528,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#conservation">← Conservation et suppression</a>
+              <a class="btn btn-ink" href="#droits">Tes droits →</a>
+            </nav>
+
             <section id="droits">
-              <h2>10. Tes droits</h2>
+              <h2><span class="sec-num">10.</span> Tes droits</h2>
               <p>
                 Sous réserve des lois applicables, tu peux demander l’accès à
                 tes données, leur correction, leur suppression, le retrait de
@@ -513,8 +577,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#securite">← Sécurité</a>
+              <a class="btn btn-ink" href="#age">Âge minimum →</a>
+            </nav>
+
             <section id="age">
-              <h2>11. Âge minimum</h2>
+              <h2><span class="sec-num">11.</span> Âge minimum</h2>
               <p>
                 <span class="kiro-text">Kiro</span> est réservé aux personnes de
                 18 ans et plus et n’est pas destiné aux mineurs. L’inscription
@@ -533,8 +602,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#droits">← Tes droits</a>
+              <a class="btn btn-ink" href="#modifications">Modifications →</a>
+            </nav>
+
             <section id="modifications">
-              <h2>12. Modifications</h2>
+              <h2><span class="sec-num">12.</span> Modifications</h2>
               <p>
                 Cette politique peut évoluer pour refléter les changements de
                 l’application, des lois ou des pratiques de sécurité. Les
@@ -544,8 +618,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#age">← Âge minimum</a>
+              <a class="btn btn-ink" href="#contact">Contact →</a>
+            </nav>
+
             <section id="contact">
-              <h2>13. Contact</h2>
+              <h2><span class="sec-num">13.</span> Contact</h2>
               <p>
                 Questions liées à la vie privée et aux données :
                 <a href="mailto:support@kirosocial.com">support@kirosocial.com</a>.
@@ -554,9 +633,19 @@
               </p>
               <!-- À CONFIRMER (avocat) : entité légale responsable du traitement, personne responsable de la protection des renseignements personnels (exigée par la Loi 25 au Québec) et juridiction applicable, avant publication. -->
             </section>
+
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#modifications">← Modifications</a>
+            </nav>
+            <div class="legal-end" data-ui>
+              <div class="ask">
+                <p class="ask-title">Une question sur cette politique ?</p>
+                <p>Écris à <a href="mailto:support@kirosocial.com">support@kirosocial.com</a>.</p>
+              </div>
+              <a class="top-link" href="#contenu">Haut de page</a>
+            </div>
           </article>
-        </div>
-      </section>
+      </div>
     </main>
 
     <footer class="ftr">

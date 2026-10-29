@@ -131,7 +131,7 @@ if (faqSearch) {
     if (!el) return null;
     return el.tagName === "DETAILS" ? el : el.closest("details.qa");
   }
-  function openFromHash() {
+  function openFromHash(event) {
     var details = resolveDetails(decodeURIComponent(window.location.hash.slice(1)));
     if (!details) return;
     details.hidden = false; // annule un éventuel filtre catégorie/recherche
@@ -141,9 +141,88 @@ if (faqSearch) {
       details.classList.remove("is-target");
     }, 2600);
     window.requestAnimationFrame(function () {
-      details.scrollIntoView({ block: "start", behavior: reduceMotion.matches ? "auto" : "smooth" });
+      // Arrivée depuis l'app ou un store : saut direct ; lien interne : défilement doux.
+      details.scrollIntoView({ block: "start", behavior: event && !reduceMotion.matches ? "smooth" : "instant" });
     });
   }
   window.addEventListener("hashchange", openFromHash);
   openFromHash();
 })();
+
+/* Pages légales : sommaire en colonne collante (≥ 1024 px) ou sélecteur de
+   section collant (« 3/13 · Compte »), mis à jour au défilement ; navigation
+   précédent/suivant sous chaque section sur mobile. */
+const toc = document.querySelector("[data-toc]");
+
+if (toc) {
+  const toggle = toc.querySelector("[data-toc-toggle]");
+  const current = toc.querySelector("[data-toc-current]");
+  const links = $$(".toc-list a", toc);
+  const sections = links.map((link) => document.getElementById(link.hash.slice(1)));
+  const setToc = (open) => {
+    toc.classList.toggle("is-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+  };
+  let index = -1;
+  // Ligne de lecture : sous l'en-tête collant (et le sélecteur sur mobile).
+  const readingLine = () => {
+    const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--hdr")) || 64;
+    return Math.round(header + (desktop.matches ? 68 : toc.offsetHeight + 24));
+  };
+
+  let line = 0;
+  const update = () => {
+    let next = 0;
+    sections.forEach((section, i) => {
+      if (section.getBoundingClientRect().top <= line) next = i;
+    });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) next = sections.length - 1;
+    if (next === index) return;
+    index = next;
+    links.forEach((link, i) => {
+      if (i === index) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+    current.innerHTML = "";
+    const position = document.createElement("span");
+    position.className = "toc-pos";
+    position.textContent = `${index + 1}/${links.length}`;
+    current.append(position, ` · ${links[index].textContent}`);
+  };
+
+  toggle.addEventListener("click", () => setToc(!toc.classList.contains("is-open")));
+  toc.addEventListener("click", (event) => {
+    if (event.target.closest("a")) setToc(false);
+  });
+  toc.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && toc.classList.contains("is-open")) {
+      setToc(false);
+      toggle.focus();
+    }
+  });
+  document.addEventListener("click", (event) => {
+    if (!toc.contains(event.target)) setToc(false);
+  });
+
+  // Le sélecteur suit la section lue : un IntersectionObserver surveille une
+  // ligne fine sous l'en-tête (la section qui la couvre change) et la fin de page.
+  let observer;
+  const observe = () => {
+    observer?.disconnect();
+    line = readingLine();
+    observer = new IntersectionObserver(update, {
+      rootMargin: `-${line}px 0px -${Math.max(0, window.innerHeight - line - 2)}px 0px`,
+    });
+    sections.forEach((section) => observer.observe(section));
+    update();
+  };
+  const end = document.querySelector(".legal-end");
+  if (end) new IntersectionObserver(update).observe(end);
+  window.addEventListener("resize", observe);
+  observe();
+
+  // Le défilement vers l'ancre de l'URL (#publicite…) se refait une fois la
+  // mise en page stabilisée (police chargée), pour arriver pile sur la section.
+  const target = window.location.hash && document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+  if (target) window.addEventListener("load", () => target.scrollIntoView({ behavior: "instant" }), { once: true });
+}

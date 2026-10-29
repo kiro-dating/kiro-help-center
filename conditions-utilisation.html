@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>document.documentElement.className += " js";</script>
     <meta name="theme-color" content="#ffffff" />
     <meta
       name="description"
@@ -17,7 +18,7 @@
     <link rel="stylesheet" href="/assets/css/styles.css" />
     <script src="/assets/js/main.js" defer></script>
   </head>
-  <body>
+  <body class="legal">
     <a class="skip-link" href="#contenu">Aller au contenu</a>
 
     <header class="hdr">
@@ -55,40 +56,43 @@
     </header>
 
     <main id="contenu">
-      <section class="page-hero">
-        <div class="section-inner">
-          <p class="eyebrow">Document légal</p>
-          <h1>Conditions d’utilisation</h1>
-          <p>
-            Ces conditions définissent les règles d’accès et d’utilisation de
-            <span class="kiro-text">Kiro</span>, une application de rencontre destinée à favoriser des échanges
-            respectueux et sécurisés.
-          </p>
-          <div class="page-actions">
-            <a class="btn btn-ink" href="#acceptation">Commencer la lecture</a>
-            <a class="btn btn-line" href="#contact">Contact</a>
+      <section class="page-head legal-head">
+        <div class="wrap">
+          <div class="legal-head-in">
+            <p class="eyebrow">Document légal</p>
+            <h1>Conditions d’utilisation</h1>
+            <p class="lead">
+              Ces conditions définissent les règles d’accès et d’utilisation de
+              <span class="kiro-text">Kiro</span>, une application de rencontre destinée à favoriser des échanges
+              respectueux et sécurisés.
+            </p>
           </div>
         </div>
       </section>
 
-      <section class="band">
-        <div class="section-inner layout">
-          <aside class="toc" aria-label="Sommaire">
-            <strong>Sommaire</strong>
-            <a href="#acceptation">Acceptation</a>
-            <a href="#eligibilite">Éligibilité</a>
-            <a href="#compte">Compte</a>
-            <a href="#conduite">Conduite</a>
-            <a href="#contenus">Contenus</a>
-            <a href="#securite">Sécurité</a>
-            <a href="#confidentialite">Confidentialité</a>
-            <a href="#paiements">Paiements</a>
-            <a href="#resiliation">Résiliation</a>
-            <a href="#responsabilite">Responsabilité</a>
-            <a href="#propriete">Propriété intellectuelle</a>
-            <a href="#modifications">Modifications</a>
-            <a href="#contact">Contact</a>
-          </aside>
+      <div class="wrap legal-layout">
+          <nav class="toc" aria-label="Sommaire" data-toc>
+            <p class="toc-title">Sommaire</p>
+            <button class="toc-toggle" type="button" data-toc-toggle aria-expanded="false" aria-controls="toc-list">
+              <span><span class="sr-only">Section actuelle : </span><span data-toc-current>Sommaire</span></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+            </button>
+            <ol class="toc-list" id="toc-list">
+              <li><a href="#acceptation">Acceptation</a></li>
+              <li><a href="#eligibilite">Éligibilité</a></li>
+              <li><a href="#compte">Compte</a></li>
+              <li><a href="#conduite">Conduite</a></li>
+              <li><a href="#contenus">Contenus</a></li>
+              <li><a href="#securite">Sécurité</a></li>
+              <li><a href="#confidentialite">Confidentialité</a></li>
+              <li><a href="#paiements">Paiements</a></li>
+              <li><a href="#resiliation">Résiliation</a></li>
+              <li><a href="#responsabilite">Responsabilité</a></li>
+              <li><a href="#propriete">Propriété intellectuelle</a></li>
+              <li><a href="#modifications">Modifications</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ol>
+          </nav>
 
           <article class="content">
             <p class="legal-note">
@@ -97,23 +101,39 @@
  <!-- À CONFIRMER (avocat) : entité légale de l’éditeur et juridiction applicable --> <!-- À CONFIRMER (avocat) : document à faire valider avant publication. -->
             </p>
 
-            <div class="key-points" aria-label="Points clés Kiro">
-              <div class="key-point">
-                <strong>Aucun mot de passe stocké</strong>
-                <p>Connexion par SMS à usage unique, Google ou Apple.</p>
+            <div class="essentiel">
+              <p class="ess-title" data-ui>L’essentiel</p>
+              <div class="key-point" data-ui>
+                <span class="ess-ico ess-ink" aria-hidden="true" data-ui>18+</span>
+                <p><span class="kiro-text">Kiro</span> est réservé aux personnes de 18 ans et plus, sans exception.</p>
               </div>
-              <div class="key-point">
-                <strong>Position exacte jamais exposée</strong>
-                <p>Ville, pays et distance approximative seulement.</p>
-              </div>
-              <div class="key-point">
-                <strong>Photos modérées avant publication</strong>
-                <p>Chaque photo de profil est analysée avant d’être affichée.</p>
-              </div>
+              <ul class="key-points" aria-label="Points clés Kiro">
+                <li class="key-point">
+                  <span class="ess-ico ess-red" aria-hidden="true" data-ui><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg></span>
+                  <div>
+                    <strong>Aucun mot de passe stocké</strong>
+                    <p>Connexion par SMS à usage unique, Google ou Apple.</p>
+                  </div>
+                </li>
+                <li class="key-point">
+                  <span class="ess-ico ess-ice" aria-hidden="true" data-ui><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></svg></span>
+                  <div>
+                    <strong>Position exacte jamais exposée</strong>
+                    <p>Ville, pays et distance approximative seulement.</p>
+                  </div>
+                </li>
+                <li class="key-point">
+                  <span class="ess-ico ess-ink" aria-hidden="true" data-ui><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><circle cx="9" cy="11" r="2" /><path d="M21 16l-5-5-8 8" /></svg></span>
+                  <div>
+                    <strong>Photos modérées avant publication</strong>
+                    <p>Chaque photo de profil est analysée avant d’être affichée.</p>
+                  </div>
+                </li>
+              </ul>
             </div>
 
             <section id="acceptation">
-              <h2>1. Acceptation des conditions</h2>
+              <h2><span class="sec-num">1.</span> Acceptation des conditions</h2>
               <p>
                 En créant un compte, en naviguant dans l’application, en
                 utilisant une fonctionnalité ou en effectuant un achat, tu
@@ -134,8 +154,12 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-ink" href="#eligibilite">Éligibilité →</a>
+            </nav>
+
             <section id="eligibilite">
-              <h2>2. Éligibilité</h2>
+              <h2><span class="sec-num">2.</span> Éligibilité</h2>
               <p>
                 <span class="kiro-text">Kiro</span> est réservé aux personnes de
                 18 ans et plus, sans exception. Ta date de naissance est
@@ -162,8 +186,13 @@
               </ul>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#acceptation">← Acceptation</a>
+              <a class="btn btn-ink" href="#compte">Compte →</a>
+            </nav>
+
             <section id="compte">
-              <h2>3. Compte et authentification</h2>
+              <h2><span class="sec-num">3.</span> Compte et authentification</h2>
               <p>
                 <span class="kiro-text">Kiro</span> ne stocke aucun mot de passe.
                 Tu peux te connecter par code SMS à usage unique, avec Google ou
@@ -199,8 +228,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#eligibilite">← Éligibilité</a>
+              <a class="btn btn-ink" href="#conduite">Conduite →</a>
+            </nav>
+
             <section id="conduite">
-              <h2>4. Règles de communauté</h2>
+              <h2><span class="sec-num">4.</span> Règles de communauté</h2>
               <p>
                 <span class="kiro-text">Kiro</span> doit rester un espace
                 respectueux, sûr et authentique. Les comportements suivants sont
@@ -245,8 +279,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#compte">← Compte</a>
+              <a class="btn btn-ink" href="#contenus">Contenus →</a>
+            </nav>
+
             <section id="contenus">
-              <h2>5. Contenus publiés</h2>
+              <h2><span class="sec-num">5.</span> Contenus publiés</h2>
               <p>
                 Ton contenu peut inclure tes photos de profil, généralement 3 à
                 6 photos, ta bio, tes
@@ -285,8 +324,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#conduite">← Conduite</a>
+              <a class="btn btn-ink" href="#securite">Sécurité →</a>
+            </nav>
+
             <section id="securite">
-              <h2>6. Sécurité</h2>
+              <h2><span class="sec-num">6.</span> Sécurité</h2>
               <p>
                 <span class="kiro-text">Kiro</span> fait plusieurs choix pour te
                 protéger: aucun mot de passe stocké, communications chiffrées en
@@ -324,8 +368,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#contenus">← Contenus</a>
+              <a class="btn btn-ink" href="#confidentialite">Confidentialité →</a>
+            </nav>
+
             <section id="confidentialite">
-              <h2>7. Confidentialité et données</h2>
+              <h2><span class="sec-num">7.</span> Confidentialité et données</h2>
               <p>
                 Cette section résume l’essentiel. La version complète et
                 détaillée se trouve dans la
@@ -433,8 +482,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#securite">← Sécurité</a>
+              <a class="btn btn-ink" href="#paiements">Paiements →</a>
+            </nav>
+
             <section id="paiements">
-              <h2>8. Paiement et monétisation</h2>
+              <h2><span class="sec-num">8.</span> Paiement et monétisation</h2>
               <p>
                 <span class="kiro-text">Kiro</span> fonctionne en freemium: un
                 plan gratuit complet et trois plans payants — Standard, Premium
@@ -476,8 +530,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#confidentialite">← Confidentialité</a>
+              <a class="btn btn-ink" href="#resiliation">Résiliation →</a>
+            </nav>
+
             <section id="resiliation">
-              <h2>9. Suspension et résiliation</h2>
+              <h2><span class="sec-num">9.</span> Suspension et résiliation</h2>
               <p>
                 Tu peux supprimer ton compte à tout moment depuis l’application.
                 La suppression du compte n’annule pas automatiquement un
@@ -508,8 +567,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#paiements">← Paiements</a>
+              <a class="btn btn-ink" href="#responsabilite">Responsabilité →</a>
+            </nav>
+
             <section id="responsabilite">
-              <h2>10. Responsabilité</h2>
+              <h2><span class="sec-num">10.</span> Responsabilité</h2>
               <p>
                 <span class="kiro-text">Kiro</span> est une plateforme de mise en
                 relation. <span class="kiro-text">Kiro</span> ne vérifie pas
@@ -540,8 +604,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#resiliation">← Résiliation</a>
+              <a class="btn btn-ink" href="#propriete">Propriété intellectuelle →</a>
+            </nav>
+
             <section id="propriete">
-              <h2>11. Propriété intellectuelle</h2>
+              <h2><span class="sec-num">11.</span> Propriété intellectuelle</h2>
               <p>
                 Le nom <span class="kiro-text">Kiro</span>, le logo, les
                 éléments visuels, l’interface, les textes, les jeux brise-glace
@@ -567,8 +636,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#responsabilite">← Responsabilité</a>
+              <a class="btn btn-ink" href="#modifications">Modifications →</a>
+            </nav>
+
             <section id="modifications">
-              <h2>12. Modifications</h2>
+              <h2><span class="sec-num">12.</span> Modifications</h2>
               <p>
                 <span class="kiro-text">Kiro</span> peut modifier le service ou
                 ces Conditions afin de refléter l’évolution de l’application, des
@@ -578,8 +652,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#propriete">← Propriété intellectuelle</a>
+              <a class="btn btn-ink" href="#contact">Contact →</a>
+            </nav>
+
             <section id="contact">
-              <h2>13. Contact</h2>
+              <h2><span class="sec-num">13.</span> Contact</h2>
               <p>
                 Questions générales :
                 <a href="mailto:contact@kirosocial.com">contact@kirosocial.com</a>.
@@ -591,9 +670,19 @@
  <!-- À CONFIRMER (avocat) : nom légal de l’éditeur, juridiction applicable et mentions de paiement définitives avant publication -->
               </div>
             </section>
+
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#modifications">← Modifications</a>
+            </nav>
+            <div class="legal-end" data-ui>
+              <div class="ask">
+                <p class="ask-title">Une question sur ces conditions ?</p>
+                <p>Écris à <a href="mailto:contact@kirosocial.com">contact@kirosocial.com</a>.</p>
+              </div>
+              <a class="top-link" href="#contenu">Haut de page</a>
+            </div>
           </article>
-        </div>
-      </section>
+      </div>
     </main>
 
     <footer class="ftr">

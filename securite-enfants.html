@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>document.documentElement.className += " js";</script>
     <meta name="theme-color" content="#ffffff" />
     <meta
       name="description"
@@ -18,7 +19,7 @@
     <link rel="stylesheet" href="/assets/css/styles.css" />
     <script src="/assets/js/main.js" defer></script>
   </head>
-  <body>
+  <body class="legal">
     <a class="skip-link" href="#contenu">Aller au contenu</a>
 
     <header class="hdr">
@@ -56,37 +57,40 @@
     </header>
 
     <main id="contenu">
-      <section class="page-hero">
-        <div class="section-inner">
-          <p class="eyebrow">Document de sécurité</p>
-          <h1>Normes de sécurité des enfants</h1>
-          <p>
-            <span class="kiro-text">Kiro</span> applique une politique de
-            tolérance zéro envers l'exploitation et les abus sexuels sur enfants.
-            Cette page décrit nos règles, nos mesures et la façon de nous
-            signaler une préoccupation.
-          </p>
-          <div class="page-actions">
-            <a class="btn btn-ink" href="#engagement">Commencer la lecture</a>
-            <a class="btn btn-line" href="#contact">Point de contact</a>
+      <section class="page-head legal-head">
+        <div class="wrap">
+          <div class="legal-head-in">
+            <p class="eyebrow">Document de sécurité</p>
+            <h1>Normes de sécurité des enfants</h1>
+            <p class="lead">
+              <span class="kiro-text">Kiro</span> applique une politique de
+              tolérance zéro envers l'exploitation et les abus sexuels sur enfants.
+              Cette page décrit nos règles, nos mesures et la façon de nous
+              signaler une préoccupation.
+            </p>
           </div>
         </div>
       </section>
 
-      <section class="band">
-        <div class="section-inner layout">
-          <aside class="toc" aria-label="Sommaire">
-            <strong>Sommaire</strong>
-            <a href="#engagement">Engagement de Kiro</a>
-            <a href="#adultes">Application réservée aux adultes</a>
-            <a href="#interdit">Contenus et comportements interdits</a>
-            <a href="#signalement">Signalement dans l'application</a>
-            <a href="#traitement">Traitement des signalements</a>
-            <a href="#moderation">Modération et prévention</a>
-            <a href="#conformite">Coopération et conformité légale</a>
-            <a href="#contact">Point de contact</a>
-            <a href="#dates">Date et mises à jour</a>
-          </aside>
+      <div class="wrap legal-layout">
+          <nav class="toc" aria-label="Sommaire" data-toc>
+            <p class="toc-title">Sommaire</p>
+            <button class="toc-toggle" type="button" data-toc-toggle aria-expanded="false" aria-controls="toc-list">
+              <span><span class="sr-only">Section actuelle : </span><span data-toc-current>Sommaire</span></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+            </button>
+            <ol class="toc-list" id="toc-list">
+              <li><a href="#engagement">Engagement de Kiro</a></li>
+              <li><a href="#adultes">Application réservée aux adultes</a></li>
+              <li><a href="#interdit">Contenus et comportements interdits</a></li>
+              <li><a href="#signalement">Signalement dans l'application</a></li>
+              <li><a href="#traitement">Traitement des signalements</a></li>
+              <li><a href="#moderation">Modération et prévention</a></li>
+              <li><a href="#conformite">Coopération et conformité légale</a></li>
+              <li><a href="#contact">Point de contact</a></li>
+              <li><a href="#dates">Date et mises à jour</a></li>
+            </ol>
+          </nav>
 
           <article class="content">
             <p class="legal-note">
@@ -96,23 +100,35 @@
               <a href="mailto:support@kirosocial.com">support@kirosocial.com</a>.
             </p>
 
-            <div class="key-points" aria-label="Points clés sécurité des enfants Kiro">
-              <div class="key-point">
-                <strong>Tolérance zéro</strong>
-                <p>Aucune place pour l'exploitation ou les abus sexuels sur enfants.</p>
-              </div>
-              <div class="key-point">
-                <strong>Réservé aux 18 ans et plus</strong>
-                <p>Les mineurs ne peuvent pas créer ni conserver un compte.</p>
-              </div>
-              <div class="key-point">
-                <strong>Signalement et blocage</strong>
-                <p>Signale une conversation, bloque une personne, écris-nous.</p>
-              </div>
+            <div class="essentiel">
+              <p class="ess-title" data-ui>L’essentiel</p>
+              <ul class="key-points" aria-label="Points clés sécurité des enfants Kiro">
+                <li class="key-point">
+                  <span class="ess-ico ess-red" aria-hidden="true" data-ui><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" /></svg></span>
+                  <div>
+                    <strong>Tolérance zéro</strong>
+                    <p>Aucune place pour l'exploitation ou les abus sexuels sur enfants.</p>
+                  </div>
+                </li>
+                <li class="key-point">
+                  <span class="ess-ico ess-ink" aria-hidden="true" data-ui>18+</span>
+                  <div>
+                    <strong>Réservé aux 18 ans et plus</strong>
+                    <p>Les mineurs ne peuvent pas créer ni conserver un compte.</p>
+                  </div>
+                </li>
+                <li class="key-point">
+                  <span class="ess-ico ess-ice" aria-hidden="true" data-ui><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V4h11l-1 4h6v9H9" /></svg></span>
+                  <div>
+                    <strong>Signalement et blocage</strong>
+                    <p>Signale une conversation, bloque une personne, écris-nous.</p>
+                  </div>
+                </li>
+              </ul>
             </div>
 
             <section id="engagement">
-              <h2>1. Engagement de Kiro</h2>
+              <h2><span class="sec-num">1.</span> Engagement de Kiro</h2>
               <p>
                 <span class="kiro-text">Kiro</span> est une application de
                 rencontres strictement réservée aux adultes. Nous appliquons une
@@ -161,8 +177,12 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-ink" href="#adultes">Application réservée aux adultes →</a>
+            </nav>
+
             <section id="adultes">
-              <h2>2. Application réservée aux adultes</h2>
+              <h2><span class="sec-num">2.</span> Application réservée aux adultes</h2>
               <p>
                 <span class="kiro-text">Kiro</span> est réservé aux personnes
                 âgées de 18 ans ou plus, sans exception. Les mineurs ne sont pas
@@ -187,8 +207,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#engagement">← Engagement de Kiro</a>
+              <a class="btn btn-ink" href="#interdit">Contenus et comportements interdits →</a>
+            </nav>
+
             <section id="interdit">
-              <h2>3. Contenus et comportements interdits</h2>
+              <h2><span class="sec-num">3.</span> Contenus et comportements interdits</h2>
               <p>
                 En plus des règles générales des
                 <a href="/conditions-utilisation">Conditions
@@ -228,8 +253,13 @@
               </ul>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#adultes">← Application réservée aux adultes</a>
+              <a class="btn btn-ink" href="#signalement">Signalement dans l'application →</a>
+            </nav>
+
             <section id="signalement">
-              <h2>4. Signalement dans l'application</h2>
+              <h2><span class="sec-num">4.</span> Signalement dans l'application</h2>
               <p>
                 <span class="kiro-text">Kiro</span> te permet de communiquer une
                 préoccupation sans quitter l'application. Les moyens réellement
@@ -272,8 +302,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#interdit">← Contenus et comportements interdits</a>
+              <a class="btn btn-ink" href="#traitement">Traitement des signalements →</a>
+            </nav>
+
             <section id="traitement">
-              <h2>5. Traitement des signalements</h2>
+              <h2><span class="sec-num">5.</span> Traitement des signalements</h2>
               <p>
                 Lorsqu'un signalement ou une préoccupation lié à la sécurité des
                 enfants nous parvient, <span class="kiro-text">Kiro</span> suit un
@@ -310,8 +345,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#signalement">← Signalement dans l'application</a>
+              <a class="btn btn-ink" href="#moderation">Modération et prévention →</a>
+            </nav>
+
             <section id="moderation">
-              <h2>6. Modération et prévention</h2>
+              <h2><span class="sec-num">6.</span> Modération et prévention</h2>
               <p>
                 <span class="kiro-text">Kiro</span> combine plusieurs mesures
                 réellement en place pour réduire les risques :
@@ -351,8 +391,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#traitement">← Traitement des signalements</a>
+              <a class="btn btn-ink" href="#conformite">Coopération et conformité légale →</a>
+            </nav>
+
             <section id="conformite">
-              <h2>7. Coopération et conformité légale</h2>
+              <h2><span class="sec-num">7.</span> Coopération et conformité légale</h2>
               <p>
                 <span class="kiro-text">Kiro</span> respecte les lois applicables
                 relatives à la sécurité des enfants dans les territoires où le
@@ -372,8 +417,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#moderation">← Modération et prévention</a>
+              <a class="btn btn-ink" href="#contact">Point de contact →</a>
+            </nav>
+
             <section id="contact">
-              <h2>8. Point de contact</h2>
+              <h2><span class="sec-num">8.</span> Point de contact</h2>
               <p><strong>Point de contact pour la sécurité des enfants</strong></p>
               <p>
                 <a href="mailto:support@kirosocial.com">support@kirosocial.com</a>
@@ -388,8 +438,13 @@
               </p>
             </section>
 
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#conformite">← Coopération et conformité légale</a>
+              <a class="btn btn-ink" href="#dates">Date et mises à jour →</a>
+            </nav>
+
             <section id="dates">
-              <h2>9. Date et mises à jour</h2>
+              <h2><span class="sec-num">9.</span> Date et mises à jour</h2>
               <p>
                 Date d'entrée en vigueur : 15 juillet 2026. Dernière mise à jour :
                 15 juillet 2026.
@@ -401,9 +456,19 @@
                 ci-dessus indique la version en vigueur.
               </p>
             </section>
+
+            <nav class="sec-nav" data-ui aria-label="Sections voisines">
+              <a class="btn btn-line" href="#contact">← Point de contact</a>
+            </nav>
+            <div class="legal-end" data-ui>
+              <div class="ask">
+                <p class="ask-title">Une question sur ces normes ?</p>
+                <p>Écris à <a href="mailto:support@kirosocial.com">support@kirosocial.com</a>.</p>
+              </div>
+              <a class="top-link" href="#contenu">Haut de page</a>
+            </div>
           </article>
-        </div>
-      </section>
+      </div>
     </main>
 
     <footer class="ftr">
